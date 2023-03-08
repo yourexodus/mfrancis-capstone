@@ -1,0 +1,6 @@
+index,types,type_label,esc_ticket_cnt,doc_mgmnt,rec_acct,non_appt_ci,appt_ci,call_prep,group
+0,0,High_Maintenance,0.35,35.4,69.56,12.48,10.41,7.0,customer
+1,1,Dissatisfied,0.68,13.89,20.61,4.02,2.48,2.35,customer
+2,2,Potential_Loyalist,0.03,79.87,49.07,5.8,6.61,4.73,customer
+3,3,Loyalist,0.15,12.26,65.65,9.39,7.86,2.94,customer
+4,4,Satisfied,0.0,1.3,28.1,5.9,22.0,0.8,customer
