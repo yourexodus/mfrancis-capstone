@@ -132,15 +132,21 @@ links = html.Div(
             html.A( 'Final_capstone_Part_III_PREP.ipynb' ,
                     href="https://git.generalassemb.ly/mfrancis/unit-4-capstone/blob/main/Final_capstone_Part_III_PREP.ipynb" ,
                     style={'gridArea': "link4"} ) , html.Br() ,
-            html.A( 'Final_capstone_Part_IIII_Dashboard_Final-Good COPY.ipynb' ,
+            html.A( 'Final_capstone_Part_IIII_Dashboard -Adding Dash and HTML Components' ,
                     href="https://git.generalassemb.ly/mfrancis/unit-4-capstone/blob/main/Final_capstone_Part_IIII_Dashboard_Final-Good%20ONLY_02_13.ipynb" ,
                     style={'gridArea': "link5"} ) , html.Br() ,
-            html.A( 'Capstone-Demo Repository- run local for testing' ,
+            html.A( 'Convert *.ipynb file from Part IIII to *.py file.  Editing file using PyCharm community Edition' ,
+                    href="https://git.generalassemb.ly/mfrancis/convertPyFiles" ,
+                    style={'gridArea': "link6"} ) , html.Br() ,
+            html.A( 'Capstone-Demo Repository- run local for testing.  Editing *.py file using PyCharm community Edition' ,
                     href="https://git.generalassemb.ly/mfrancis/marlainna-capstone-app" ,
-                    style={'gridArea': "link6"} ), html.Br(),
-            html.A('Capstone-Demo Repository- run on Render Server (code used to render image files differ between files)' ,
+                    style={'gridArea': "link7"} ), html.Br(),
+            html.A('Capstone-Demo Repository- run on Render Server (code used to render image files differ between files). Moved files to GitHub.  Deployed to Render. ' ,
                    href="https://github.com/yourexodus/mfrancis_capstone/tree/main",
-                   style={'gridArea': "link7"})
+                   style={'gridArea': "link8"}), html.Br(),
+            html.A( 'Resource link:  How to deploy using Render' ,
+                    href="https://www.youtube.com/watch?v=Gv910_b5ID0" ,
+                    style={'gridArea': "link9"} )
 
             # dcc.Graph( figure=df_join_fig, id="df-join-fig", style={'gridArea': "df_join_fig"} ),
             # give a list of inner elements as the content
