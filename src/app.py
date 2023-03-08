@@ -1476,131 +1476,216 @@ ROC_images.append( pil_img )
 ROC_images.append( pil_simg )
 ROC_images.append( ROC_All_fig_img )
 
+from PIL import Image
+
+pil_img = Image.open( "assets/Roc_curve_Loyalist_fig.png" )
+pil_hmimg = Image.open( 'assets/High_Maintenance_fig.png' )
+pil_limg = Image.open( 'assets/Potential_Loyalist_fig.png' )
+pil_dimg = Image.open( 'assets/Dissatisfied_fig.png' )
+pil_simg = Image.open( 'assets/Satisfied_fig.png' )
+pil_allimg = Image.open( 'assets/ROC_All_fig.png' )
+
+pil_allimg = html.Div(
+    [
+        html.Div(
+            html.Div(
+                [
+                    html.Div( [
+                        html.H3(  'The Overall micro-average accuracy score is  .70 for all classes'),
+                        html.Img( src=pil_allimg , width=512 , height=400 ) ,  # using the pillow image variable
+
+                        ] ) ,
+                    html.Div( className="sidebar-wrapper" ) ,
+                    ]
+                ) ,
+            className="sidebar" ,
+            ) ,
+        html.Div(
+            html.Div(
+                html.Div( className="container-fluid" ) ,
+                className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " ,
+                ) ,
+            className="main-panel" ,
+            ) ,
+        ] , id="All_img_fig"
+    )
+
+pil_simg = html.Div(
+    [
+        html.Div(
+            html.Div(
+                [
+                    html.Div( [
+                        html.H3( 'The Satissifed class has a micro-average accuracy score of .42.  '
+                                 'This is an imbalanced class and the accuracy score is .28 less than '
+                                 'the over all average') ,
+
+                        html.Img( src=pil_simg , width=512 , height=400 ) ,  # using the pillow image variable
+
+                        ] ) ,
+                    html.Div( className="sidebar-wrapper" ) ,
+                    ]
+                ) ,
+            className="sidebar" ,
+            ) ,
+        html.Div(
+            html.Div(
+                html.Div( className="container-fluid" ) ,
+                className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " ,
+                ) ,
+            className="main-panel" ,
+            ) ,
+        ] , id="Satisfied_fig"
+    )
+
+pil_dimg = html.Div(
+    [
+        html.Div(
+            html.Div(
+                [
+                    html.Div( [
+                        html.H3( 'The Dissatissifed class has a micro-average accuracy score of .62.  '
+                                 'This is an imbalanced class and the accuracy score is .08 less than the '
+                                 'over all average') ,
+                        html.Img( src=pil_dimg , width=512 , height=400 ) ,  # using the pillow image variable
+
+                        ] ) ,
+                    html.Div( className="sidebar-wrapper" ) ,
+                    ]
+                ) ,
+            className="sidebar" ,
+            ) ,
+        html.Div(
+            html.Div(
+                html.Div( className="container-fluid" ) ,
+                className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " ,
+                ) ,
+            className="main-panel" ,
+            ) ,
+        ] , id="Dissatisfied_fig"
+    )
+
+pil_limg = html.Div(
+    [
+        html.Div(
+            html.Div(
+                [
+                    html.Div( [
+                        html.H3(  'The Potential Loyalist class has a micro-average accuracy score of .66.  '
+                                  'That is .04 less than the Overall average') ,
+
+                        html.Img( src=pil_limg , width=512 , height=400 ) ,  # using the pillow image variable
+
+                        ] ) ,
+                    html.Div( className="sidebar-wrapper" ) ,
+                    ]
+                ) ,
+            className="sidebar" ,
+            ) ,
+        html.Div(
+            html.Div(
+                html.Div( className="container-fluid" ) ,
+                className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " ,
+                ) ,
+            className="main-panel" ,
+            ) ,
+        ] , id="Roc_curve_all_img"
+    )
+
+pil_hmimg = html.Div(
+    [
+        html.Div(
+            html.Div(
+                [
+                    html.Div( [
+                        html.H3( 'The High Maintenance class has a micro-average accuracy score of .66. '
+                                 ' That is .04 less than the Overall average') ,
+                        html.Img( src=pil_hmimg , width=512 , height=400 ) ,  # using the pillow image variable
+
+                        ] ) ,
+                    html.Div( className="sidebar-wrapper" ) ,
+                    ]
+                ) ,
+            className="sidebar" ,
+            ) ,
+        html.Div(
+            html.Div(
+                html.Div( className="container-fluid" ) ,
+                className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " ,
+                ) ,
+            className="main-panel" ,
+            ) ,
+        ] , id="High_Maintenance_fig"
+    )
+
+pil_img = html.Div(
+    [
+        html.Div(
+            html.Div(
+                [
+                    html.Div( [
+                        html.H3( 'The Loyalist class has a micro-average accuracy score of .66.  '
+                                 'That is .04 less than the Overall average') ,
+                        html.Img( src=pil_img , width=512 , height=400 ) ,  # using the pillow image variable
+
+                        ] ) ,
+                    html.Div( className="sidebar-wrapper" ) ,
+                    ]
+                ) ,
+            className="sidebar" ,
+            ) ,
+        html.Div(
+            html.Div(
+                html.Div( className="container-fluid" ) ,
+                className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " ,
+                ) ,
+            className="main-panel" ,
+            ) ,
+        ] , id="Roc_curve_Loyalist_fig"
+    )
+
+text15 = html.Textarea( "ROC Evaluation"
+                        , style={
+        'backgroundColor': 'tan' ,
+        'fontFamily': 'verdana' ,
+        'textAlign': 'center' ,
+
+        } ,
+                        id='text15' ,
+                        className="text15" , maxLength=400 , minLength=100 )
+
+text15.style = {'gridArea': "text15"}
+
+# add images to a containerF
+pil_img.style = {'gridArea': "Roc_curve_Loyalist_fig"}
+pil_hmimg.style = {'gridArea': "High_Maintenance_fig"}
+pil_limg.style = {'gridArea': "Potential_Loyalist_fig"}
+pil_dimg.style = {'gridArea': "Dissatisfied_fig"}
+pil_simg.style = {'gridArea': "Satisfied_fig"}
+pil_allimg.style = {'gridArea': "ROC2_All_fig"}
+
+ROC_images = []
+
+
+
+
+ROC_images.append( pil_allimg )
+
 ######################################
 
-## ROC TAB SECTION
-roc_tab_loyal_ROC = html.Div(
-    html.Div( className="trend_10" ,
-              children=[
 
-                  html.H5(
-                      'The Loyalist class has a micro-average accuracy score of .66.  That is .04 less than the Overall average' ,
-                      style={
-                          'backgroundColor': 'white' ,
-                          'fontFamily': 'verdana' ,
-                          # 'textAlign':'center',
-                          'gridArea': "roc_tab_loyal_ROC"
 
-                          }
-                      ) ,
-                  html.Img( src='Roc_curve_Loyalist_fig.png' , width=512 , height=400 )
-                  ] ,
-              )
-    )
 
-roc_tab_highmaint_ROC = html.Div(
-    html.Div( className="trend_11" ,
-              children=[
-
-                  html.H5(
-                      'The High Maintenance class has a micro-average accuracy score of .66.  That is .04 less than the Overall average' ,
-                      style={
-                          'backgroundColor': 'white' ,
-                          'fontFamily': 'verdana' ,
-                          # 'textAlign':'center',
-                          'gridArea': "roc_tab_highmaint_ROC"
-
-                          }
-                      ) ,
-                  html.Img( src='High_Maintenance_fig.png' , width=512 , height=400 )
-                  ] ,
-              )
-    )
-roc_tab_potloy_ROC = html.Div(
-    html.Div( className="trend_12" ,
-              children=[
-
-                  html.H5(
-                      'The Potential Loyalist class has a micro-average accuracy score of .66.  That is .04 less than the Overall average' ,
-                      style={
-                          'backgroundColor': 'white' ,
-                          'fontFamily': 'verdana' ,
-                          # 'textAlign':'center',
-                          'gridArea': "roc_tab_potloy_ROC"
-
-                          }
-                      ) ,
-                  html.Img( src='Potential_Loyalist_fig.png' , width=512 , height=400 )
-                  ] ,
-              )
-    )
-
-roc_tab_satis_ROC = html.Div(
-    html.Div( className="trend_13" ,
-              children=[
-
-                  html.H5(
-                      'The Satissifed class has a micro-average accuracy score of .42.  This is an imbalanced class and the accuracy score is .28 less than the over all average' ,
-                      style={
-                          'backgroundColor': 'white' ,
-                          'fontFamily': 'verdana' ,
-                          # 'textAlign':'center',
-                          'gridArea': "roc_tab_sat_ROC"
-
-                          }
-                      ) ,
-                  html.Img( src='Satisfied_fig.png' , width=512 , height=400 )
-                  ] ,
-              )
-    )
-
-roc_tab_dissatis_ROC = html.Div(
-    html.Div( className="trend_13" ,
-              children=[
-
-                  html.H5(
-                      'The Dissatissifed class has a micro-average accuracy score of .62.  This is an imbalanced class and the accuracy score is .08 less than the over all average' ,
-                      style={
-                          'backgroundColor': 'white' ,
-                          'fontFamily': 'verdana' ,
-                          # 'textAlign':'center',
-                          'gridArea': "diss_roc_div"
-
-                          }
-                      ) ,
-                  html.Img( src='Dissatisfied_fig.png' , width=512 , height=400 )
-                  ] ,
-              )
-    )
-
-roc_tab_all_ROC = html.Div(
-    html.Div( className="trend_14" ,
-              children=[
-
-                  html.H5(
-                      'The Overall micro-average accuracy score is  .70 for all classes' ,
-                      style={
-                          'backgroundColor': 'white' ,
-                          'fontFamily': 'verdana' ,
-                          # 'textAlign':'center',
-                          'gridArea': "all_roc_div"
-
-                          }
-                      ) ,
-                  html.Img( src='ROC_All_fig.png' , width=512 , height=400 )
-                  ] ,
-              )
-    )
 
 # Add images  to tabs
 # roc_tab_loyal = create_tab( ROC_images[3] , "Loyalist" , "loy_roc" )
 # roc_tab_loyal_ROC
-roc_tab_loyal = create_tab( roc_tab_loyal_ROC , "Loyalist" , "loy_roc" )
-roc_tab_highmaint = create_tab( roc_tab_highmaint_ROC , "High Maint" , "hm_roc" )
-roc_tab_potloy = create_tab( roc_tab_potloy_ROC , "Potential Loyalist" , "pl_roc" )
-roc_tab_satis = create_tab( roc_tab_satis_ROC , "Satisfied" , "sat_roc" )
-roc_tab_diss = create_tab( roc_tab_dissatis_ROC , "Dissatisfied" , "dis_roc" )
-roc_tab_all = create_tab( roc_tab_all_ROC , "All" , "all_roc" )
+roc_tab_loyal = create_tab( pil_img, "Loyalist" , "loy_roc" )
+roc_tab_highmaint = create_tab( pil_hmimg , "High Maint" , "hm_roc" )
+roc_tab_potloy = create_tab( pil_limg , "Potential Loyalist" , "pl_roc" )
+roc_tab_satis = create_tab( pil_simg , "Satisfied" , "sat_roc" )
+roc_tab_diss = create_tab( pil_dimg , "Dissatisfied" , "dis_roc" )
+roc_tab_all = create_tab( pil_allimg , "All" , "all_roc" )
 
 roc_tabs = dcc.Tabs(
     [roc_tab_loyal , roc_tab_highmaint , roc_tab_potloy , roc_tab_satis , roc_tab_diss , roc_tab_all] ,
