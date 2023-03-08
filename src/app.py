@@ -1179,7 +1179,7 @@ analysis_tabs2 = dcc.Tabs(
 ##################################
 LogisticRegression_img = Image.open( "assets/LogisticRegression.PNG" )
 LogisticRegressionConfusionMatrix_img = Image.open( "assets/LogisticRegressionConfusionMatrix.PNG" )
-ImprovedScoreUsingRandomForestClassifer_img = Image.open( "assets/ImprovedScoreUsingRandomForestClassifer.png" )
+ImprovedScoreUsingRandomForestClassifer_img = Image.open( "assets/ImprovedScoreUsingRandomForestClassifer.PNG" )
 RandomForestPCA_img = Image.open( "assets/RandomForestPCA.PNG" )
 
 
