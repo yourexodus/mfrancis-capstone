@@ -1304,10 +1304,12 @@ All_pred_fig_dv = dcc.Graph( figure=All_pred_fig_01 ,
 ## COnfustion matrix section
 
 # from PIL import Image
-ConfusionMatrix_item = html.Div( html.Img( src= 'ConfusionMatrix.png' ) ,
+
+ConfusionMatrix_item = html.Div( html.Img(src=r'assets/ConfusionMatrix.png', alt='image') ,
                                  id="ConfusionMatrix_item" )
+
 ConfusionMatrix_item.style = {'grid Area': "ConfusionMatrix_item"}
-ConfusionMatrix_item = 'ConfusionMatrix.png'  # replace with your own image
+
 
 ConfusionMatrix_text = html.Textarea( "\
 #split data to Train and test\n\n \
@@ -1370,31 +1372,30 @@ Cm_subtitle = html.H3( "The dataset has 5 customer types as outputs or classes: 
 Cm_subtitle.style = {'gridArea': "Cm_subtitle"}
 
 #########################################################
-pil_img = html.Div( html.Img( src=app.get_asset_url( 'Roc_curve_Loyalist_fig.png' ) , width=512 , height=400 ) ,
+
+pil_img = html.Div( html.Img( src=r'assets/Roc_curve_Loyalist_fig.png', alt='image' , width=512 , height=400 ) ,
                     id="Roc_curve_Loyalist_id" )
 pil_img.style = {'gridArea': "Roc_curve_Loyalist_fig"}
 
 ########################################################
 
-pil_hmimg = html.Div( html.Img( src=app.get_asset_url( 'High_Maintenance_fig.png' ) , width=512 , height=400 ) ,
-                      id="High_Maintenance_fig" )
+pil_hmimg = html.Div( html.Img( src=r'assets/High_Maintenance_fig.png', alt='image', width=512 , height=400), id="High_Maintenance_fig" )
 pil_hmimg.style = {'gridArea': "High_Maintenance_fig"}
 
 #################################################################
 
-pil_limg = html.Div( html.Img( src=app.get_asset_url( 'Potential_Loyalist_fig.png' ) , width=512 , height=400 ) ,
-                     id="Potential_Loyalist_img" )
+pil_limg = html.Div( html.Img( src=r'assets/Potential_Loyalist_fig.png', alt='image', width=512 , height=400)  , id="Potential_Loyalist_img" )
 pil_limg.style = {'gridArea': "ROC2_All_fig"}
 
 ##################################################################
 
-pil_dimg = html.Div( html.Img( src=app.get_asset_url( 'Dissatisfied_fig.png' ) , width=512 , height=400 ) ,
+pil_dimg = html.Div( html.Img( src=r'assets/Dissatisfied_fig.png', alt='image', width=512 , height=400)   ,
                      id="Dissatisfied_fig" )
 pil_dimg.style = {'gridArea': "Dissatisfied_fig"}
 
 ###################################################################
 
-pil_simg = html.Div( html.Img( src=app.get_asset_url( 'Satisfied_fig.png' ) , width=512 , height=400 ) ,
+pil_simg = html.Div( html.Img(src=r'assets/Satisfied_fig.png' , width=512 , height=400)   ,
                      id="Satisfied_fig" )
 pil_simg.style = {'gridArea': "Satisfied_fig"}
 
