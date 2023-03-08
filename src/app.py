@@ -723,8 +723,8 @@ text_1.style = {'gridArea': "text_1"}
 text_2 = html.H4(
     "Distribution:  Tenure is my prediction variable however I would like this to be a classification problem.  "
     "  My goal is to group this data into 5 group and assign a label to each group. Given tenure data is not "
-    "normalized.  Will need to equally distribute the data using bins.  I will Create 5 bins based on percentile values  min, 50%,75%, and max values "
-    "bins = [387,494,541,583,881,1038]" ,
+    "normalized.  Will need to equally distribute the data using bins.  I will create 5 bins based on percentile values  min, 50%,75%, and max values "
+    "Bins values = [387,494,541,583,881,1038]" ,
     style={
         'backgroundColor': 'tan' ,
         'fontFamily': 'verdana' ,
