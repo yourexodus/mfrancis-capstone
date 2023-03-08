@@ -3,20 +3,10 @@ import pandas as pd
 from dash import Dash , html , dcc
 import base64
 # import seaborn as sns
-
+from PIL import Image
 import dash_bootstrap_components as dbc
-import base64
 
 
-# Using base64 encoding and decoding
-
-def b64_image(image_filename):
-    with open( image_filename , 'rb' ) as f:
-        image = f.read()
-    return 'data:image/png;base64,' + base64.b64encode( image ).decode( 'utf-8' )
-
-
-##################################################
 
 date_data = pd.read_csv( "dates_data.csv" )
 
@@ -145,9 +135,12 @@ links = html.Div(
             html.A( 'Final_capstone_Part_IIII_Dashboard_Final-Good COPY.ipynb' ,
                     href="https://git.generalassemb.ly/mfrancis/unit-4-capstone/blob/main/Final_capstone_Part_IIII_Dashboard_Final-Good%20ONLY_02_13.ipynb" ,
                     style={'gridArea': "link5"} ) , html.Br() ,
-            html.A( 'Capstone-Demo Repository' ,
+            html.A( 'Capstone-Demo Repository- run local for testing' ,
                     href="https://git.generalassemb.ly/mfrancis/marlainna-capstone-app" ,
-                    style={'gridArea': "link6"} )
+                    style={'gridArea': "link6"} ), html.Br(),
+            html.A('Capstone-Demo Repository- run on Render Server (code used to render image files differ between files)' ,
+                   href="https://github.com/yourexodus/mfrancis_capstone/tree/main",
+                   style={'gridArea': "link7"})
 
             # dcc.Graph( figure=df_join_fig, id="df-join-fig", style={'gridArea': "df_join_fig"} ),
             # give a list of inner elements as the content
@@ -536,14 +529,46 @@ histofig = px.histogram( my_data , x="tenure" )
 bin_figures.append( histofig )
 
 # from PIL import Image
-histo_item = html.Div( html.Img( src='tenure_distr_dist_plot.png' , width=512 , height=400 ) ,
-                       id="histo_item_fig" )
+histo_item_img = Image.open( "assets/tenure_distr_dist_plot.png" )
+histo_item = html.Div(
+    [
+        html.Div(
+            html.Div(
+                [
+                    html.Div( [
+                        html.H5( ' Tenure has several outliers but because my dataset is only 266 records, I did not remove any of the outliers.\n Created 6 bins usign ranges Created bins using ranges:# create bins bins1 = [387,494,541,583,881,1038]. In the future, I would like to obtain more data so I can remove outliers resulting in more equal distribution.',
+                      style={
+                          'backgroundColor': 'white' ,
+                          'fontFamily': 'verdana' ,
+                          # 'textAlign':'center',
+                          'gridArea': "H5B_title_01"
+
+                          }
+                      ) ,
+                        html.Img( src=histo_item_img, width=512 , height=400 ) ,  # using the pillow image variable
+
+                        ] ) ,
+                    html.Div( className="sidebar-wrapper" ) ,
+                    ]
+                ) ,
+            className="sidebar" ,
+            ) ,
+        html.Div(
+            html.Div(
+                html.Div( className="container-fluid" ) ,
+                className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " ,
+                ) ,
+            className="main-panel" ,
+            ) ,
+        ] , id="histo_item_fig"
+    )
 histo_item.style = {'gridArea': "histo_item"}
 
-histo_text = html.Textarea( "import seaborn as sns\n\n import matplotlib.pyplot as plt \n histofig, ax = plt.subplots() \n sns.histplot(data=my_data, x='tenure', kde=True) \n ax.set_title('Histogram and KDE of tenure') \n histofig.show \
-\n\n Tenure has several outliers but because my dataset is only 266 records, I did not remove any of the outliers.\n Created 6 bins usign ranges Created bins using ranges:# create bins bins1 = [387,494,541,583,881,1038]. In the future, I would like to obtain more data so I can remove outliers resulting in more equal distribution." ,
-                            style={'width': '100%' ,
-                                   'height': 300 ,
+histo_text = html.Textarea( "import seaborn as sns\n\n import matplotlib.pyplot as plt \n "
+                            "histofig, ax = plt.subplots() \n sns.histplot(data=my_data, x='tenure', "
+                            "kde=True) \n ax.set_title('Histogram and KDE of tenure') \n histofig.show ",
+                             style={'width': '100%' ,
+                                   'height': 100 ,
                                    'color': 'white' ,
                                    'backgroundColor': 'black' ,
                                    'fontFamily': 'verdana' ,
@@ -551,7 +576,7 @@ histo_text = html.Textarea( "import seaborn as sns\n\n import matplotlib.pyplot 
                                    } , id='histo_text' ,
                             className="histo" , maxLength=400 , minLength=100 )
 
-histo_text.style = {'gridArea': "histo_text" , 'width': '45%' , 'height': 300}
+histo_text.style = {'gridArea': "histo_text" , 'width': '45%' , 'height': 150}
 
 histo_item.style = {'gridArea': "histo_item"}
 
@@ -1151,27 +1176,20 @@ analysis_tabs2 = dcc.Tabs(
     value="analyzepotloy2" ,
     style={'gridArea': "analyzefeatures2"} )
 
+##################################
+LogisticRegression_img = Image.open( "assets/LogisticRegression.png" )
+LogisticRegressionConfusionMatrix_img = Image.open( "assets/LogisticRegressionConfusionMatrix.png" )
+ImprovedScoreUsingRandomForestClassifer_img = Image.open( "assets/ImprovedScoreUsingRandomForestClassifer.png" )
+RandomForestPCA_img = Image.open( "assets/RandomForestPCA.png" )
+
+
 ########################################################
-LogisticRegression_img = html.Div(
-    html.Img( src='LogisticRegression.png' , width=512 , height=400 ) ,
-    id="LogisticRegression_id" )
 LogisticRegression_img.style = {'gridArea': "LogisticRegression_fig"}
-
-#####################################
-LogisticRegressionConfusionMatrix_img = html.Div(
-    html.Img( src='LogisticRegressionConfusionMatrix.png' , width=512 , height=400 ) ,
-    id="LogisticRegressionConfusionMatrix_id" )
 LogisticRegressionConfusionMatrix_img.style = {'gridArea': "LogisticRegressionConfusionMatrix_fig"}
-
-##################################
-
-ImprovedScoreUsingRandomForestClassifer_img = html.Div(
-    html.Img( src='ImprovedScoreUsingRandomForestClassifer.png'
-              , width=512 , height=400 ) ,
-    id="ImprovedScoreUsingRandomForestClassifer_id" )
 ImprovedScoreUsingRandomForestClassifer_img.style = {'gridArea': "ImprovedScoreUsingRandomForestClassifer_fig"}
+RandomForestPCA_img.style = {'gridArea': "RandomForestPCA_fig"}
+##########################################################
 
-##################################
 
 title9 = html.Div(
     html.Div( className="trend_9" ,
@@ -1197,7 +1215,7 @@ title9 = html.Div(
 
                           }
                       ) ,
-                  html.Img( src='LogisticRegression.png' , width=512 , height=400 )
+                  html.Img( src=LogisticRegression_img , width=512 , height=400 )
                   ,
                   html.H5(
                       'Evaluate the performance using .score() method. ' ,
@@ -1209,7 +1227,7 @@ title9 = html.Div(
 
                           }
                       ) ,
-                  html.Img( src='LogisticRegressionConfusionMatrix.png' , width=512 , height=560 )
+                  html.Img( src=LogisticRegressionConfusionMatrix_img , width=512 , height=400 )
                   ,
                   html.H5(
                       'Improved Logistic Regression score using RandomForestClassifer ' ,
@@ -1221,8 +1239,7 @@ title9 = html.Div(
 
                           }
                       ) ,
-                  html.Img( src='ImprovedScoreUsingRandomForestClassifer.png' , width=562 ,
-                            height=500 ) ,
+                  html.Img( src=ImprovedScoreUsingRandomForestClassifer_img , width=512 , height=400 ),
                   html.H5(
                       'Improved RandomForestClassifer score using PCA(n_components=2) ' ,
                       style={
@@ -1233,8 +1250,8 @@ title9 = html.Div(
 
                           }
                       ) ,
-                  html.Img( src='RandomForestPCA.png' , width=520 ,
-                            height=580 ) ,
+                  html.Img( src=RandomForestPCA_img, width=512 , height=500 ) ,
+
                   html.H5(
                       'Conclusion I was able to run my Random Forect model using PCA and reduce features down to 2 principle '
                       ' components resulting in a accuracy score of 96%. Before, the accuracy '
@@ -1268,7 +1285,7 @@ title_pred = html.Div(
                            ) ,
 
                   html.H5(
-                      'Made predictions using RandomForestClassifer model. Appended scores to dataframe.  Click each tab to view prediction results ' ,
+                      'Made predictions using RandomForestClassifier model. Appended scores to dataframe.  Click each tab to view prediction results ' ,
                       style={
                           'backgroundColor': 'white' ,
                           'fontFamily': 'verdana' ,
@@ -1379,43 +1396,6 @@ Cm_subtitle.style = {'gridArea': "Cm_subtitle"}
 
 #########################################################
 
-pil_img = html.Div( html.Img( src=r'assets/Roc_curve_Loyalist_fig.png' , alt='image' , width=512 , height=400 ) ,
-                    id="Roc_curve_Loyalist_id" )
-pil_img.style = {'gridArea': "Roc_curve_Loyalist_fig"}
-
-########################################################
-
-pil_hmimg = html.Div( html.Img( src=r'assets/High_Maintenance_fig.png' , alt='image' , width=512 , height=400 ) ,
-                      id="High_Maintenance_fig" )
-pil_hmimg.style = {'gridArea': "High_Maintenance_fig"}
-
-#################################################################
-
-pil_limg = html.Div( html.Img( src=r'assets/Potential_Loyalist_fig.png' , alt='image' , width=512 , height=400 ) ,
-                     id="Potential_Loyalist_img" )
-pil_limg.style = {'gridArea': "ROC2_All_fig"}
-
-##################################################################
-
-pil_dimg = html.Div( html.Img( src=r'assets/Dissatisfied_fig.png' , alt='image' , width=512 , height=400 ) ,
-                     id="Dissatisfied_fig" )
-pil_dimg.style = {'gridArea': "Dissatisfied_fig"}
-
-###################################################################
-
-
-# calling the above function
-image_path = 'assets/Satisfied_fig.png'
-pil_simg = html.Img( src=b64_image( image_path ), width=512 , height=400 , id="Satisfied_fig" )
-pil_simg.style = {'gridArea': "Satisfied_fig"}
-
-##################################################################
-
-
-###############################################################
-
-
-##############################################################
 
 text15 = html.H3( "ROC Evaluation:  The main interest is not the plot but the ROC-AUC score itself"
                   , style={
@@ -1463,18 +1443,7 @@ title_ROC = html.Div(
               )
     )
 #
-############################
-ROC_All_fig_img = html.Div( html.Img( src=app.get_asset_url( 'ROC_All_fig.png' ) , width=512 , height=400 ) ,
-                            id="ROC_All_fig_id" )
-ROC_All_fig_img.style = {'gridArea': "ROC_All_fig_fig"}
-###########################
-ROC_images = []
-ROC_images.append( pil_hmimg )
-ROC_images.append( pil_dimg )
-ROC_images.append( pil_limg )
-ROC_images.append( pil_img )
-ROC_images.append( pil_simg )
-ROC_images.append( ROC_All_fig_img )
+
 
 from PIL import Image
 
@@ -1664,12 +1633,12 @@ pil_dimg.style = {'gridArea': "Dissatisfied_fig"}
 pil_simg.style = {'gridArea': "Satisfied_fig"}
 pil_allimg.style = {'gridArea': "ROC2_All_fig"}
 
-ROC_images = []
 
 
 
 
-ROC_images.append( pil_allimg )
+
+
 
 ######################################
 
@@ -1678,7 +1647,7 @@ ROC_images.append( pil_allimg )
 
 
 # Add images  to tabs
-# roc_tab_loyal = create_tab( ROC_images[3] , "Loyalist" , "loy_roc" )
+
 # roc_tab_loyal_ROC
 roc_tab_loyal = create_tab( pil_img, "Loyalist" , "loy_roc" )
 roc_tab_highmaint = create_tab( pil_hmimg , "High Maint" , "hm_roc" )
@@ -1755,7 +1724,8 @@ app.layout = html.Div( [
 
     # dbc.Row( [dbc.Col( text_2 , width=11 )] , justify="around" ) ,
 
-    dbc.Row( [dbc.Col( text_2 , width=3 ) , dbc.Col( histo_item , width=8 )] , justify="around" ) ,
+    dbc.Row( [dbc.Col( text_2 , width=3 ) ,dbc.Col(histo_text,width=8)] , justify="around" ) ,
+    dbc.Row([dbc.Col( histo_item , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( graph_05 , width=5 ) , dbc.Col( graph_07 , width=6 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( title5A , width=11 )] , justify="around" ) ,
     # dbc.Row( [dbc.Col(ConfusionMatrix_item,width=11)],justify="around"),
@@ -1773,8 +1743,6 @@ app.layout = html.Div( [
     dbc.Row( [dbc.Col( text15 , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( roc_tabs , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( conclusion_title , width=11 )] , justify="around" ) ,
-    # dbc.Row( [dbc.Col( ROC_images[0] , width=5 ) , dbc.Col( ROC_images[1] , width=5 )] , justify="between" ) ,
-    # dbc.Row( [dbc.Col( ROC_images[2] , width=5 ) , dbc.Col( ROC_images[3] , width=5 )] , justify="around" ),
 
     # dbc.Row( [dbc.Col( conclusion_title , width=11 )] , justify="around" ),
     # dbc.Row( [dbc.Col(, width=11 )], justify="around" ),
