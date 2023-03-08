@@ -5,6 +5,18 @@ import base64
 # import seaborn as sns
 
 import dash_bootstrap_components as dbc
+import base64
+
+
+# Using base64 encoding and decoding
+
+def b64_image(image_filename):
+    with open( image_filename , 'rb' ) as f:
+        image = f.read()
+    return 'data:image/png;base64,' + base64.b64encode( image ).decode( 'utf-8' )
+
+
+##################################################
 
 date_data = pd.read_csv( "dates_data.csv" )
 
@@ -234,7 +246,6 @@ def setIndex_to_col(df):
 
 top5_df = setIndex_to_col( top5_df )
 
-
 ##############################################
 # change columns order
 change_col_order = ['index' , 'cu_purchase_dt' , 'cu_start_dt' , 'cu_cancel_dt' ,
@@ -308,10 +319,12 @@ top5_table = dash_table.DataTable(
     )
 #################################
 ################################################
-extract_feature_data = my_data.loc[:,['tenure'	,'esc_ticket_cnt'	,'doc_mgmnt'	,'rec_acct',	'non_appt_ci'	,'appt_ci'	,'call_prep']].head()
+extract_feature_data = my_data.loc[: ,
+                       ['tenure' , 'esc_ticket_cnt' , 'doc_mgmnt' , 'rec_acct' , 'non_appt_ci' , 'appt_ci' ,
+                        'call_prep']].head()
 
-extract_feature_df = setIndex_to_col(extract_feature_data)
-extract_feature_columns =  []
+extract_feature_df = setIndex_to_col( extract_feature_data )
+extract_feature_columns = []
 for name in extract_feature_df[3:]:
     mycol_info = {
         "name": name ,
@@ -514,12 +527,11 @@ bin_figures = []
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-#histofig , ax = plt.subplots()
-#sns.histplot( data=my_data , x='tenure' , kde=True )
-#ax.set_title( 'Histogram and KDE of tenure' )
+# histofig , ax = plt.subplots()
+# sns.histplot( data=my_data , x='tenure' , kde=True )
+# ax.set_title( 'Histogram and KDE of tenure' )
 
-histofig = px.histogram(my_data, x="tenure")
-
+histofig = px.histogram( my_data , x="tenure" )
 
 bin_figures.append( histofig )
 
@@ -555,7 +567,7 @@ cleaned_data_desc = html.Div(
                       'identify columns that need to be renamed, '
                       'potential issues that may affect models performance, '
                       'and identified possible features and target column data, merged files, and dropped duplicated.  '
-                        ,style={
+                      , style={
                           'backgroundColor': 'white' ,
                           'fontFamily': 'verdana' ,
                           # 'textAlign':'center',
@@ -563,10 +575,10 @@ cleaned_data_desc = html.Div(
 
                           }
                       ) ,
-                    html.H5(
+                  html.H5(
                       'After merging several files, I started out with over 30 feature variables.  Used Test Train Split to identify the best performing features'
                       ' for my prediction model.  These features are listed below:'
-                        ,style={
+                      , style={
                           'backgroundColor': 'white' ,
                           'fontFamily': 'verdana' ,
                           # 'textAlign':'center',
@@ -575,18 +587,17 @@ cleaned_data_desc = html.Div(
                           }
                       )
 
-                ]
+                  ]
               )
     )
 cleaned_data_top5desc = html.Div(
     html.Div( className="trend_2" ,
               children=[
 
-
                   html.H5(
                       'Further extracted the following features and target variable data into a separate dataset to be used in my prediction model.'
-                        '  Included top 5 records from my dataset.   ' ,
-                     style={
+                      '  Included top 5 records from my dataset.   ' ,
+                      style={
                           'backgroundColor': 'white' ,
                           'fontFamily': 'verdana' ,
                           # 'textAlign':'center',
@@ -695,7 +706,7 @@ text_2 = html.H4(
         'textAlign': 'center' ,
 
         } ,
-    id='text_2'  )
+    id='text_2' )
 
 # text1
 text_2.style = {'gridArea': "text_2"}
@@ -791,8 +802,6 @@ Avg_tab = dcc.Tabs(
     style={'gridArea': "avg_table"}
 
     )
-
-
 
 import pandas as pd
 
@@ -1144,20 +1153,20 @@ analysis_tabs2 = dcc.Tabs(
 
 ########################################################
 LogisticRegression_img = html.Div(
-    html.Img( src= 'LogisticRegression.png'  , width=512 , height=400 ) ,
+    html.Img( src='LogisticRegression.png' , width=512 , height=400 ) ,
     id="LogisticRegression_id" )
 LogisticRegression_img.style = {'gridArea': "LogisticRegression_fig"}
 
 #####################################
 LogisticRegressionConfusionMatrix_img = html.Div(
-    html.Img( src= 'LogisticRegressionConfusionMatrix.png', width=512 , height=400 ) ,
+    html.Img( src='LogisticRegressionConfusionMatrix.png' , width=512 , height=400 ) ,
     id="LogisticRegressionConfusionMatrix_id" )
 LogisticRegressionConfusionMatrix_img.style = {'gridArea': "LogisticRegressionConfusionMatrix_fig"}
 
 ##################################
 
 ImprovedScoreUsingRandomForestClassifer_img = html.Div(
-    html.Img( src= 'ImprovedScoreUsingRandomForestClassifer.png'
+    html.Img( src='ImprovedScoreUsingRandomForestClassifer.png'
               , width=512 , height=400 ) ,
     id="ImprovedScoreUsingRandomForestClassifer_id" )
 ImprovedScoreUsingRandomForestClassifer_img.style = {'gridArea': "ImprovedScoreUsingRandomForestClassifer_fig"}
@@ -1188,7 +1197,7 @@ title9 = html.Div(
 
                           }
                       ) ,
-                  html.Img( src='LogisticRegression.png', width=512 , height=400 )
+                  html.Img( src='LogisticRegression.png' , width=512 , height=400 )
                   ,
                   html.H5(
                       'Evaluate the performance using .score() method. ' ,
@@ -1200,7 +1209,7 @@ title9 = html.Div(
 
                           }
                       ) ,
-                  html.Img( src='LogisticRegressionConfusionMatrix.png', width=512 , height=560 )
+                  html.Img( src='LogisticRegressionConfusionMatrix.png' , width=512 , height=560 )
                   ,
                   html.H5(
                       'Improved Logistic Regression score using RandomForestClassifer ' ,
@@ -1212,8 +1221,8 @@ title9 = html.Div(
 
                           }
                       ) ,
-                  html.Img( src='ImprovedScoreUsingRandomForestClassifer.png'  , width=562 ,
-                            height=500 ),
+                  html.Img( src='ImprovedScoreUsingRandomForestClassifer.png' , width=562 ,
+                            height=500 ) ,
                   html.H5(
                       'Improved RandomForestClassifer score using PCA(n_components=2) ' ,
                       style={
@@ -1223,14 +1232,14 @@ title9 = html.Div(
                           'gridArea': "H5B_title"
 
                           }
-                      ),
+                      ) ,
                   html.Img( src='RandomForestPCA.png' , width=520 ,
-                            height=580 ),
+                            height=580 ) ,
                   html.H5(
                       'Conclusion I was able to run my Random Forect model using PCA and reduce features down to 2 principle '
-                         ' components resulting in a accuracy score of 96%. Before, the accuracy ' 
-                        ' results were 0.9285714285714286 so the results are the same. As a result, PCA did improve my performance. '
-                        ' This maybe too accurate. Concerned about overfitting. I would to use the rfc2 with X instead and not X_pca ' ,
+                      ' components resulting in a accuracy score of 96%. Before, the accuracy '
+                      ' results were 0.9285714285714286 so the results are the same. As a result, PCA did improve my performance. '
+                      ' This maybe too accurate. Concerned about overfitting. I would to use the rfc2 with X instead and not X_pca ' ,
                       style={
                           'backgroundColor': 'white' ,
                           'fontFamily': 'verdana' ,
@@ -1272,8 +1281,6 @@ title_pred = html.Div(
               )
     )
 
-
-
 ######################################
 # Graph my prediction and graph my actual value
 from plotly.colors import qualitative
@@ -1305,11 +1312,10 @@ All_pred_fig_dv = dcc.Graph( figure=All_pred_fig_01 ,
 
 # from PIL import Image
 
-ConfusionMatrix_item = html.Div( html.Img(src=r'assets/ConfusionMatrix.png', alt='image') ,
+ConfusionMatrix_item = html.Div( html.Img( src=r'assets/ConfusionMatrix.png' , alt='image' ) ,
                                  id="ConfusionMatrix_item" )
 
 ConfusionMatrix_item.style = {'grid Area': "ConfusionMatrix_item"}
-
 
 ConfusionMatrix_text = html.Textarea( "\
 #split data to Train and test\n\n \
@@ -1373,30 +1379,34 @@ Cm_subtitle.style = {'gridArea': "Cm_subtitle"}
 
 #########################################################
 
-pil_img = html.Div( html.Img( src=r'assets/Roc_curve_Loyalist_fig.png', alt='image' , width=512 , height=400 ) ,
+pil_img = html.Div( html.Img( src=r'assets/Roc_curve_Loyalist_fig.png' , alt='image' , width=512 , height=400 ) ,
                     id="Roc_curve_Loyalist_id" )
 pil_img.style = {'gridArea': "Roc_curve_Loyalist_fig"}
 
 ########################################################
 
-pil_hmimg = html.Div( html.Img( src=r'assets/High_Maintenance_fig.png', alt='image', width=512 , height=400), id="High_Maintenance_fig" )
+pil_hmimg = html.Div( html.Img( src=r'assets/High_Maintenance_fig.png' , alt='image' , width=512 , height=400 ) ,
+                      id="High_Maintenance_fig" )
 pil_hmimg.style = {'gridArea': "High_Maintenance_fig"}
 
 #################################################################
 
-pil_limg = html.Div( html.Img( src=r'assets/Potential_Loyalist_fig.png', alt='image', width=512 , height=400)  , id="Potential_Loyalist_img" )
+pil_limg = html.Div( html.Img( src=r'assets/Potential_Loyalist_fig.png' , alt='image' , width=512 , height=400 ) ,
+                     id="Potential_Loyalist_img" )
 pil_limg.style = {'gridArea': "ROC2_All_fig"}
 
 ##################################################################
 
-pil_dimg = html.Div( html.Img( src=r'assets/Dissatisfied_fig.png', alt='image', width=512 , height=400)   ,
+pil_dimg = html.Div( html.Img( src=r'assets/Dissatisfied_fig.png' , alt='image' , width=512 , height=400 ) ,
                      id="Dissatisfied_fig" )
 pil_dimg.style = {'gridArea': "Dissatisfied_fig"}
 
 ###################################################################
 
-pil_simg = html.Div( html.Img(src=r'assets/Satisfied_fig.png' , width=512 , height=400)   ,
-                     id="Satisfied_fig" )
+
+# calling the above function
+image_path = 'assets/Satisfied_fig.png'
+pil_simg = html.Img( src=b64_image( image_path ), width=512 , height=400 , id="Satisfied_fig" )
 pil_simg.style = {'gridArea': "Satisfied_fig"}
 
 ##################################################################
@@ -1408,14 +1418,14 @@ pil_simg.style = {'gridArea': "Satisfied_fig"}
 ##############################################################
 
 text15 = html.H3( "ROC Evaluation:  The main interest is not the plot but the ROC-AUC score itself"
-                        , style={
+                  , style={
         'backgroundColor': 'tan' ,
         'fontFamily': 'verdana' ,
         'textAlign': 'center' ,
 
         } ,
-                        id='text15' )
-                        #className="text15" , maxLength=400 , minLength=100 )
+                  id='text15' )
+# className="text15" , maxLength=400 , minLength=100 )
 
 text15.style = {'gridArea': "text15"}
 #############################
@@ -1443,11 +1453,11 @@ title_ROC = html.Div(
                           'gridArea': "title_ROC2"
 
                           }
-                      ),
-                    html.Br() ,
-            html.A( 'Resource Link: Multiclass Receiver Operating Characteristic (ROC)' ,
-                    href="https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html" ,
-                    style={'gridArea': "link_ROC"} ),html.Br(),
+                      ) ,
+                  html.Br() ,
+                  html.A( 'Resource Link: Multiclass Receiver Operating Characteristic (ROC)' ,
+                          href="https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html" ,
+                          style={'gridArea': "link_ROC"} ) , html.Br() ,
 
                   ] ,
               )
@@ -1455,7 +1465,7 @@ title_ROC = html.Div(
 #
 ############################
 ROC_All_fig_img = html.Div( html.Img( src=app.get_asset_url( 'ROC_All_fig.png' ) , width=512 , height=400 ) ,
-                    id="ROC_All_fig_id" )
+                            id="ROC_All_fig_id" )
 ROC_All_fig_img.style = {'gridArea': "ROC_All_fig_fig"}
 ###########################
 ROC_images = []
@@ -1483,7 +1493,7 @@ roc_tab_loyal_ROC = html.Div(
 
                           }
                       ) ,
-                  html.Img( src='Roc_curve_Loyalist_fig.png', width=512 , height=400 )
+                  html.Img( src='Roc_curve_Loyalist_fig.png' , width=512 , height=400 )
                   ] ,
               )
     )
@@ -1520,7 +1530,7 @@ roc_tab_potloy_ROC = html.Div(
 
                           }
                       ) ,
-                  html.Img(src='Potential_Loyalist_fig.png', width=512 , height=400 )
+                  html.Img( src='Potential_Loyalist_fig.png' , width=512 , height=400 )
                   ] ,
               )
     )
@@ -1558,7 +1568,7 @@ roc_tab_dissatis_ROC = html.Div(
 
                           }
                       ) ,
-                  html.Img( src='Dissatisfied_fig.png', width=512 , height=400 )
+                  html.Img( src='Dissatisfied_fig.png' , width=512 , height=400 )
                   ] ,
               )
     )
@@ -1583,17 +1593,17 @@ roc_tab_all_ROC = html.Div(
     )
 
 # Add images  to tabs
-#roc_tab_loyal = create_tab( ROC_images[3] , "Loyalist" , "loy_roc" )
-#roc_tab_loyal_ROC
+# roc_tab_loyal = create_tab( ROC_images[3] , "Loyalist" , "loy_roc" )
+# roc_tab_loyal_ROC
 roc_tab_loyal = create_tab( roc_tab_loyal_ROC , "Loyalist" , "loy_roc" )
 roc_tab_highmaint = create_tab( roc_tab_highmaint_ROC , "High Maint" , "hm_roc" )
-roc_tab_potloy = create_tab( roc_tab_potloy_ROC, "Potential Loyalist" , "pl_roc" )
-roc_tab_satis = create_tab( roc_tab_satis_ROC, "Satisfied" , "sat_roc" )
+roc_tab_potloy = create_tab( roc_tab_potloy_ROC , "Potential Loyalist" , "pl_roc" )
+roc_tab_satis = create_tab( roc_tab_satis_ROC , "Satisfied" , "sat_roc" )
 roc_tab_diss = create_tab( roc_tab_dissatis_ROC , "Dissatisfied" , "dis_roc" )
 roc_tab_all = create_tab( roc_tab_all_ROC , "All" , "all_roc" )
 
 roc_tabs = dcc.Tabs(
-    [roc_tab_loyal , roc_tab_highmaint , roc_tab_potloy , roc_tab_satis , roc_tab_diss, roc_tab_all] ,
+    [roc_tab_loyal , roc_tab_highmaint , roc_tab_potloy , roc_tab_satis , roc_tab_diss , roc_tab_all] ,
     className="tabs-container" ,
     id="roctabs" ,
     value="loy_roc" ,
@@ -1635,9 +1645,7 @@ conclusion_title = html.Div(
               )
     )
 
-
-
-#'In conclustion, I was able to determine there are several factors that affect customer cancellation.  The most prominent features are non-appt calls and prep time.  I was able to create customer types based on different feature however the imbalance of my classes affected my micro-average accuracy score of my multi-classification model.  In the future, I would like to gather more data under the "satisfied" classifcation'
+# 'In conclustion, I was able to determine there are several factors that affect customer cancellation.  The most prominent features are non-appt calls and prep time.  I was able to create customer types based on different feature however the imbalance of my classes affected my micro-average accuracy score of my multi-classification model.  In the future, I would like to gather more data under the "satisfied" classifcation'
 ################################## create dataframe tables ################
 
 
@@ -1649,43 +1657,41 @@ app.layout = html.Div( [
     # dbc.Row( [dbc.Col(purchase_fig,width=5),dbc.Col(cancel_fig,width=6)], justify="around"),
     dbc.Row( [dbc.Col( title7 , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( text7 , width=11 )] , justify="around" ) ,
-    dbc.Row( [dbc.Col(cleaned_data_desc,width=11)], justify="around"),
+    dbc.Row( [dbc.Col( cleaned_data_desc , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( top5_tab , width=11 )] , justify="around" ) ,
-    dbc.Row( [dbc.Col(cleaned_data_top5desc,width=11)], justify="around"),
-    dbc.Row( [dbc.Col(extract_feature_table,width=11)], justify="around"),
+    dbc.Row( [dbc.Col( cleaned_data_top5desc , width=11 )] , justify="around" ) ,
+    dbc.Row( [dbc.Col( extract_feature_table , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( title1C , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( text_1 , width=3 ) , dbc.Col( DistriGraph_div , width=8 )] , justify="around" ) ,
 
-
     dbc.Row( [dbc.Col( graph_03 , width=11 )] , justify="around" ) ,
-
 
     dbc.Row( [dbc.Col( title2B , width=11 )] , justify="around" ) ,
 
-    #dbc.Row( [dbc.Col( text_2 , width=11 )] , justify="around" ) ,
+    # dbc.Row( [dbc.Col( text_2 , width=11 )] , justify="around" ) ,
 
     dbc.Row( [dbc.Col( text_2 , width=3 ) , dbc.Col( histo_item , width=8 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( graph_05 , width=5 ) , dbc.Col( graph_07 , width=6 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( title5A , width=11 )] , justify="around" ) ,
-    #dbc.Row( [dbc.Col(ConfusionMatrix_item,width=11)],justify="around"),
+    # dbc.Row( [dbc.Col(ConfusionMatrix_item,width=11)],justify="around"),
     dbc.Row( [dbc.Col( avg_table , width=5 ) , dbc.Col( analysis_graph_figure , width=5 )] , justify="around" ) ,
     # dbc.Row( [dbc.Col(avg_table,width=5), dbc.Col(analysis_tabs,width=5)], justify="around" ),
     # dbc.Row([dbc.Col(analysis_graph_figure,width=11)],justify="around"),
     dbc.Row( [dbc.Col( title5B , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( graph_01 , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( title9 , width=11 )] , justify="around" ) ,
-    dbc.Row([dbc.Col(title_pred, width=11)], justify="around"),
+    dbc.Row( [dbc.Col( title_pred , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( Pred_table_tabs , width=6 ) , dbc.Col( analysis_tabs2 , width=5 )] , justify="around" ) ,  #
     dbc.Row( [dbc.Col( All_pred_fig_dv , width=11 )] , justify="around" ) ,
 
-    dbc.Row( [dbc.Col(title_ROC,width=11)], justify="around"),
+    dbc.Row( [dbc.Col( title_ROC , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( text15 , width=11 )] , justify="around" ) ,
-    dbc.Row( [dbc.Col(roc_tabs, width=11)], justify="around"),
-    dbc.Row([dbc.Col(conclusion_title,width=11)], justify="around"),
-    #dbc.Row( [dbc.Col( ROC_images[0] , width=5 ) , dbc.Col( ROC_images[1] , width=5 )] , justify="between" ) ,
-    #dbc.Row( [dbc.Col( ROC_images[2] , width=5 ) , dbc.Col( ROC_images[3] , width=5 )] , justify="around" ),
+    dbc.Row( [dbc.Col( roc_tabs , width=11 )] , justify="around" ) ,
+    dbc.Row( [dbc.Col( conclusion_title , width=11 )] , justify="around" ) ,
+    # dbc.Row( [dbc.Col( ROC_images[0] , width=5 ) , dbc.Col( ROC_images[1] , width=5 )] , justify="between" ) ,
+    # dbc.Row( [dbc.Col( ROC_images[2] , width=5 ) , dbc.Col( ROC_images[3] , width=5 )] , justify="around" ),
 
-    #dbc.Row( [dbc.Col( conclusion_title , width=11 )] , justify="around" ),
+    # dbc.Row( [dbc.Col( conclusion_title , width=11 )] , justify="around" ),
     # dbc.Row( [dbc.Col(, width=11 )], justify="around" ),
     # dbc.Row([dbc.Col(image_card, width=3), dbc.Col(graph_card, width=8)], justify="around")
     ] )
