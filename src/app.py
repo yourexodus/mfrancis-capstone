@@ -1177,10 +1177,10 @@ analysis_tabs2 = dcc.Tabs(
     style={'gridArea': "analyzefeatures2"} )
 
 ##################################
-LogisticRegression_img = Image.open( "assets/LogisticRegression.png" )
-LogisticRegressionConfusionMatrix_img = Image.open( "assets/LogisticRegressionConfusionMatrix.png" )
+LogisticRegression_img = Image.open( "assets/LogisticRegression.PNG" )
+LogisticRegressionConfusionMatrix_img = Image.open( "assets/LogisticRegressionConfusionMatrix.PNG" )
 ImprovedScoreUsingRandomForestClassifer_img = Image.open( "assets/ImprovedScoreUsingRandomForestClassifer.png" )
-RandomForestPCA_img = Image.open( "assets/RandomForestPCA.png" )
+RandomForestPCA_img = Image.open( "assets/RandomForestPCA.PNG" )
 
 
 ########################################################
