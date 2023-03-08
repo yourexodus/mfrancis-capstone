@@ -524,7 +524,7 @@ histofig = px.histogram(my_data, x="tenure")
 bin_figures.append( histofig )
 
 # from PIL import Image
-histo_item = html.Div( html.Img( src=app.get_asset_url( 'tenure_distr_dist_plot.png' ) , width=512 , height=400 ) ,
+histo_item = html.Div( html.Img( src='tenure_distr_dist_plot.png' , width=512 , height=400 ) ,
                        id="histo_item_fig" )
 histo_item.style = {'gridArea': "histo_item"}
 
@@ -1144,20 +1144,21 @@ analysis_tabs2 = dcc.Tabs(
 
 ########################################################
 LogisticRegression_img = html.Div(
-    html.Img( src=app.get_asset_url( 'LogisticRegression.png' ) , width=512 , height=400 ) ,
+    html.Img( src= 'LogisticRegression.png'  , width=512 , height=400 ) ,
     id="LogisticRegression_id" )
 LogisticRegression_img.style = {'gridArea': "LogisticRegression_fig"}
 
 #####################################
 LogisticRegressionConfusionMatrix_img = html.Div(
-    html.Img( src=app.get_asset_url( 'LogisticRegressionConfusionMatrix.png' ) , width=512 , height=400 ) ,
+    html.Img( src= 'LogisticRegressionConfusionMatrix.png', width=512 , height=400 ) ,
     id="LogisticRegressionConfusionMatrix_id" )
 LogisticRegressionConfusionMatrix_img.style = {'gridArea': "LogisticRegressionConfusionMatrix_fig"}
 
 ##################################
 
 ImprovedScoreUsingRandomForestClassifer_img = html.Div(
-    html.Img( src=app.get_asset_url( 'ImprovedScoreUsingRandomForestClassifer.png' ) , width=512 , height=400 ) ,
+    html.Img( src= 'ImprovedScoreUsingRandomForestClassifer.png'
+              , width=512 , height=400 ) ,
     id="ImprovedScoreUsingRandomForestClassifer_id" )
 ImprovedScoreUsingRandomForestClassifer_img.style = {'gridArea': "ImprovedScoreUsingRandomForestClassifer_fig"}
 
@@ -1187,7 +1188,7 @@ title9 = html.Div(
 
                           }
                       ) ,
-                  html.Img( src=app.get_asset_url( 'LogisticRegression.png' ) , width=512 , height=400 )
+                  html.Img( src='LogisticRegression.png', width=512 , height=400 )
                   ,
                   html.H5(
                       'Evaluate the performance using .score() method. ' ,
@@ -1199,7 +1200,7 @@ title9 = html.Div(
 
                           }
                       ) ,
-                  html.Img( src=app.get_asset_url( 'LogisticRegressionConfusionMatrix.png' ) , width=512 , height=560 )
+                  html.Img( src='LogisticRegressionConfusionMatrix.png', width=512 , height=560 )
                   ,
                   html.H5(
                       'Improved Logistic Regression score using RandomForestClassifer ' ,
@@ -1211,7 +1212,7 @@ title9 = html.Div(
 
                           }
                       ) ,
-                  html.Img( src=app.get_asset_url( 'ImprovedScoreUsingRandomForestClassifer.png' ) , width=562 ,
+                  html.Img( src='ImprovedScoreUsingRandomForestClassifer.png'  , width=562 ,
                             height=500 ),
                   html.H5(
                       'Improved RandomForestClassifer score using PCA(n_components=2) ' ,
@@ -1223,7 +1224,7 @@ title9 = html.Div(
 
                           }
                       ),
-                  html.Img( src=app.get_asset_url( 'RandomForestPCA.png' ) , width=520 ,
+                  html.Img( src='RandomForestPCA.png' , width=520 ,
                             height=580 ),
                   html.H5(
                       'Conclusion I was able to run my Random Forect model using PCA and reduce features down to 2 principle '
@@ -1303,7 +1304,7 @@ All_pred_fig_dv = dcc.Graph( figure=All_pred_fig_01 ,
 ## COnfustion matrix section
 
 # from PIL import Image
-ConfusionMatrix_item = html.Div( html.Img( src=app.get_asset_url( 'ConfusionMatrix.png' ) ) ,
+ConfusionMatrix_item = html.Div( html.Img( src= 'ConfusionMatrix.png' ) ,
                                  id="ConfusionMatrix_item" )
 ConfusionMatrix_item.style = {'grid Area': "ConfusionMatrix_item"}
 ConfusionMatrix_item = 'ConfusionMatrix.png'  # replace with your own image
@@ -1481,7 +1482,7 @@ roc_tab_loyal_ROC = html.Div(
 
                           }
                       ) ,
-                  html.Img( src=app.get_asset_url( 'Roc_curve_Loyalist_fig.png' ) , width=512 , height=400 )
+                  html.Img( src='Roc_curve_Loyalist_fig.png', width=512 , height=400 )
                   ] ,
               )
     )
@@ -1500,7 +1501,7 @@ roc_tab_highmaint_ROC = html.Div(
 
                           }
                       ) ,
-                  html.Img( src=app.get_asset_url( 'High_Maintenance_fig.png' ) , width=512 , height=400 )
+                  html.Img( src='High_Maintenance_fig.png' , width=512 , height=400 )
                   ] ,
               )
     )
@@ -1518,7 +1519,7 @@ roc_tab_potloy_ROC = html.Div(
 
                           }
                       ) ,
-                  html.Img( src=app.get_asset_url( 'Potential_Loyalist_fig.png' ) , width=512 , height=400 )
+                  html.Img(src='Potential_Loyalist_fig.png', width=512 , height=400 )
                   ] ,
               )
     )
@@ -1537,7 +1538,7 @@ roc_tab_satis_ROC = html.Div(
 
                           }
                       ) ,
-                  html.Img( src=app.get_asset_url( 'Satisfied_fig.png' ) , width=512 , height=400 )
+                  html.Img( src='Satisfied_fig.png' , width=512 , height=400 )
                   ] ,
               )
     )
@@ -1556,7 +1557,7 @@ roc_tab_dissatis_ROC = html.Div(
 
                           }
                       ) ,
-                  html.Img( src=app.get_asset_url( 'Dissatisfied_fig.png' ) , width=512 , height=400 )
+                  html.Img( src='Dissatisfied_fig.png', width=512 , height=400 )
                   ] ,
               )
     )
@@ -1575,7 +1576,7 @@ roc_tab_all_ROC = html.Div(
 
                           }
                       ) ,
-                  html.Img( src=app.get_asset_url( 'ROC_All_fig.png' ) , width=512 , height=400 )
+                  html.Img( src='ROC_All_fig.png' , width=512 , height=400 )
                   ] ,
               )
     )
