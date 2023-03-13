@@ -145,7 +145,7 @@ links = html.Div(
                    href="https://github.com/yourexodus/mfrancis_capstone/blob/main/src/app.py",
                    style={'gridArea': "link8"}), html.Br(),
             html.A( 'Resource link:  How to deploy using Render' ,
-                    href="https://www.youtube.com/watch?v=Gv910_b5ID0" ,
+                      href="https://www.youtube.com/watch?v=Gv910_b5ID0" ,
                     style={'gridArea': "link9"} )
 
             # dcc.Graph( figure=df_join_fig, id="df-join-fig", style={'gridArea': "df_join_fig"} ),
@@ -848,7 +848,7 @@ def create_feature_plot_by_type(type):
 
     elif type == 2:  # Potential Loyalist
         feature = "appt_ci"
-        g_title = 'Potential Loyalist - Highest number of call<br>prep time   <br>Type vs call_prep'
+        g_title = 'Potential Loyalist - Highest number of <br>reconciled accounts <br>Type vs rec_acct'
     elif type == 3:  # Loyalist
         feature = "non_appt_ci"
         g_title = 'Loyalist - Highest Non call <br> prep appts (non_appt_ci)<br> Type vs Non_appt_ci'
