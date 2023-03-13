@@ -840,7 +840,7 @@ import pandas as pd
 def create_feature_plot_by_type(type):
     if type == 0:  # HighMaintenance  [Change loyist to high maint]
         feature = "rec_acct"
-        g_title = 'HighMaintenance - Highest document<br> management accounts (doc_mgmt)<br> Type vs doc_mgmt'
+        g_title = 'HighMaintenance - Highest number of <br>reconciled account <br>Type vs rec_acct'
 
     elif type == 1:  # Dissatisfied
         feature = "esc_ticket_cnt"
@@ -848,7 +848,7 @@ def create_feature_plot_by_type(type):
 
     elif type == 2:  # Potential Loyalist
         feature = "appt_ci"
-        g_title = 'Potential Loyalist - Highest number of <br>reconciled accounts <br>Type vs rec_acct'
+        g_title = 'Potential Loyalist - Highest number of document<br> management accounts (doc_mgmt)<br> Type vs doc_mgmt'
     elif type == 3:  # Loyalist
         feature = "non_appt_ci"
         g_title = 'Loyalist - Highest Non call <br> prep appts (non_appt_ci)<br> Type vs Non_appt_ci'
