@@ -145,7 +145,7 @@ links = html.Div(
                 href="https://github.com/yourexodus/mfrancis_capstone/blob/main/src/app.py" ,
                 style={'gridArea': "link8"} ) , html.Br() ,
             html.A( 'Resource link:  How to deploy using Render' ,
-                    href="https://www.youtube.com/watch?v=Gv910_b5ID0" ,
+                    href="https://www.youtube.com/watch?v=XWJBJoV5ywwgit " ,
                     style={'gridArea': "link9"} )
 
             # dcc.Graph( figure=df_join_fig, id="df-join-fig", style={'gridArea': "df_join_fig"} ),
