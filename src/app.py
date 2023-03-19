@@ -6,8 +6,6 @@ import base64
 from PIL import Image
 import dash_bootstrap_components as dbc
 
-
-
 date_data = pd.read_csv( "dates_data.csv" )
 
 app = Dash( __name__ )
@@ -29,7 +27,7 @@ title = html.Div(
                            className="title"
                            ) ,
 
-                  html.H3( 'Problem: High Customer turnnover/Low Customer Retention' ,
+                  html.H3( 'Problem: High Customer turnover/Low Customer Retention' ,
                            style={
                                'backgroundColor': 'tan' ,
                                'fontFamily': 'verdana' ,
@@ -138,14 +136,16 @@ links = html.Div(
             html.A( 'Convert *.ipynb file from Part IIII to *.py file.  Editing file using PyCharm community Edition' ,
                     href="https://git.generalassemb.ly/mfrancis/convertPyFiles" ,
                     style={'gridArea': "link6"} ) , html.Br() ,
-            html.A( 'Capstone-Demo Repository- run local for testing.  Editing *.py file using PyCharm community Edition' ,
-                    href="https://git.generalassemb.ly/mfrancis/marlainna-capstone-app/blob/main/src/app.py" ,
-                    style={'gridArea': "link7"} ), html.Br(),
-            html.A('Capstone-Demo Repository- run on Render Server (code used to render image files differ between files). Moved files to GitHub.  Deployed to Render. ' ,
-                   href="https://github.com/yourexodus/mfrancis_capstone/blob/main/src/app.py",
-                   style={'gridArea': "link8"}), html.Br(),
+            html.A(
+                'Capstone-Demo Repository- run local for testing.  Editing *.py file using PyCharm community Edition' ,
+                href="https://git.generalassemb.ly/mfrancis/marlainna-capstone-app/blob/main/src/app.py" ,
+                style={'gridArea': "link7"} ) , html.Br() ,
+            html.A(
+                'Capstone-Demo Repository- run on Render Server (code used to render image files differ between files). Moved files to GitHub.  Deployed to Render. ' ,
+                href="https://github.com/yourexodus/mfrancis_capstone/blob/main/src/app.py" ,
+                style={'gridArea': "link8"} ) , html.Br() ,
             html.A( 'Resource link:  How to deploy using Render' ,
-                      href="https://www.youtube.com/watch?v=Gv910_b5ID0" ,
+                    href="https://www.youtube.com/watch?v=Gv910_b5ID0" ,
                     style={'gridArea': "link9"} )
 
             # dcc.Graph( figure=df_join_fig, id="df-join-fig", style={'gridArea': "df_join_fig"} ),
@@ -154,6 +154,10 @@ links = html.Div(
         )
     )
 ########## END OF:  First Row : title , links, header, graph -- complete #############################
+
+############## begin correlation graph
+
+################# end correlation graph ################################
 my_data = pd.read_csv( "dashboard_data.csv" )
 x = my_data.days_diff_purdt_custartdt
 y = my_data['tenure']
@@ -167,12 +171,104 @@ fig_daydiff.update_layout( height=400 , width=650 ,
                            title="Capstone: Num Days Between Purchase_dt & CU_Start_Date vs Tenure" ,
                            yaxis_title="tenure" , xaxis_title="Diff: Purchase_dt & CU_Start_dt" )
 
+##############
+correlation_img = Image.open( "assets/CorrelationHeatmap_fig.png" )
+correlation_item = html.Div(
+    [
+        html.Div(
+            html.Div(
+                [
+                    html.Div( [
+                            html.H5(
+                            'The correlation heatmap illustrates there is a close relationship between variable in red and a more distant relationship between the variables in blue.'
+                            'After examaming the heatmap, I identified the following best-performaing variables: rec-acct, non-appt, appt_ci, call-prep, days_diff_purch_custartdt' ,
+                            style={
+                                'backgroundColor': 'white' ,
+                                'fontFamily': 'verdana' ,
+                                # 'textAlign':'center',
+                                'gridArea': "corr_header"
+
+                                }
+                            ) ,
+                        html.Img( src=correlation_img , width=840 , height=800 ) ,
+                        # using the pillow image variable
+
+                        ] ) ,
+                    html.Div( className="sidebar-wrapper" ) ,
+                    ]
+                ) ,
+            className="sidebar" ,
+            ) ,
+        html.Div(
+            html.Div(
+                html.Div( className="container-fluid" ) ,
+                className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " ,
+                ) ,
+            className="main-panel" ,
+            ) ,
+        ] , id="correlation_id"
+    )
+correlation_item.style = {'gridArea': "correlation_ga"}
+
+
+
 ##################
 
+BoxPlot_img = Image.open("assets/BoxPlot_fig.png")
+dataStatistics_img = Image.open("assets/dataStatistics.PNG")
+purch_cancel_code_img = Image.open( "assets/UnderstandingTheData.png" )
+purch_cancel_code_item = html.Div(
+    [
+        html.Div(
+            html.Div(
+                [
+                    html.Div( [
+                        html.H2( 'About the Data' ,
+                                 style={
+                                     'backgroundColor': 'tan' ,
+                                     'fontFamily': 'verdana' ,
+                                     'textAlign': 'center' ,
+                                     'gridArea': "title"
+
+                                     } ,
+                                 id='purchase_Act_code_Title' ,
+                                 className="purchase_Act_code_Title "
+                                 ) ,
+                        html.H5(
+                            'This sample dataset has large variances in the data.  Due to limited data access, I am unable to retrieve more data' ,
+                            style={
+                                'backgroundColor': 'white' ,
+                                'fontFamily': 'verdana' ,
+                                # 'textAlign':'center',
+                                'gridArea': "purchase_Act_code_header"
+
+                                }
+                            ) ,
+                        html.Img( src=dataStatistics_img , width=600 , height=350 ) ,
+                        html.Img( src=BoxPlot_img , width=600 , height=350 ) ,
+
+                        ] ) ,
+                    html.Div( className="sidebar-wrapper" ) ,
+                    ]
+                ) ,
+            className="sidebar" ,
+            ) ,
+        html.Div(
+            html.Div(
+                html.Div( className="container-fluid" ) ,
+                className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " ,
+                ) ,
+            className="main-panel" ,
+            ) ,
+        ] , id="purch_cancel_code_id"
+    )
+purch_cancel_code_item.style = {'gridArea': "purch_cancel_code_ga"}
+
+###########################
 Purchase_activity_desc = html.Div(
     html.Div( className="trend_1" ,
               children=[
-                  html.H2( 'Purchase/Cancellation Activity' ,
+                  html.H2( 'Missing Data' ,
                            style={
                                'backgroundColor': 'tan' ,
                                'fontFamily': 'verdana' ,
@@ -181,8 +277,23 @@ Purchase_activity_desc = html.Div(
 
                                } ,
                            id='purchase_ActivityTitle' ,
-                           className="'purchase_ActivityTitle "
+                           className="purchase_ActivityTitle "
                            ) ,
+                            html.H5(
+                            'Purchase/Cancellation Activity: I used a crosstab query to explore data coverage across multiple years.  I determined several months of data is missing within each year.  '
+                            'As a result, this sample dataset is incomplete. Nonetheless, I have completed the capstone using this data '
+                            'to demonstrate new skills and tackle a pressing issue relevant to the product I support in my current position.' ,
+                            style={
+                                'backgroundColor': 'white' ,
+                                'fontFamily': 'verdana' ,
+                                # 'textAlign':'center',
+                                'gridArea': "purchase_Act_code_header"
+
+                                }
+                            ) ,
+                        #
+                        html.Img( src=purch_cancel_code_img , width=750 , height=900 ) ,
+                        # using the pillow image variable
 
                   html.H5(
                       'Purchase Activity: Highest number of purchase was recorded February and March of 2021.  Since March of 2021, purchases have decreased.  ' ,
@@ -199,7 +310,7 @@ Purchase_activity_desc = html.Div(
 
                   ,
                   html.H5(
-                      'Cancellation Activity:Cancellations conitnued to increase from March with the exception of July reaching a peak month of canceallation in September of 2021. ' ,
+                      'Cancellation Activity:Cancellations continued to increase from March with the exception of July reaching a peak month of canceallation in September of 2021. ' ,
                       style={
                           'backgroundColor': 'white' ,
                           'fontFamily': 'verdana' ,
@@ -471,7 +582,7 @@ graph_03 = dcc.Graph( figure=splot_fig , id="splot_fig" ,
                       style={'gridArea': "graph_03"} )
 
 # set style as a dictionary
-title1C = html.H3( 'Relationships between Prediction and Feature variables' ,
+title1C = html.H3( 'Relationships between variables' ,
                    style={
                        'backgroundColor': 'tan' ,
                        'fontFamily': 'verdana' ,
@@ -496,6 +607,7 @@ text_1 = html.Textarea( "Matrix:\nShow relationships between all variable" ,
 DistriGraph_div = html.Div(
     html.Div( className="trend2" ,
               children=[
+
                   html.H5(
                       'Matrix Relationship Interpretation: The basis of the predictor is tenure.  Non-appt, appt, and call_prep are the most impactful as it relates to tenure. However the relationships among these feature variables are not linear.' ,
                       style={
@@ -542,16 +654,17 @@ histo_item = html.Div(
             html.Div(
                 [
                     html.Div( [
-                        html.H5( ' Tenure has several outliers but because my dataset is only 266 records, I did not remove any of the outliers.\n Created 6 bins usign ranges Created bins using ranges:# create bins bins1 = [387,494,541,583,881,1038]. In the future, I would like to obtain more data so I can remove outliers resulting in more equal distribution.',
-                      style={
-                          'backgroundColor': 'white' ,
-                          'fontFamily': 'verdana' ,
-                          # 'textAlign':'center',
-                          'gridArea': "H5B_title_01"
+                        html.H5(
+                            ' Tenure has several outliers but because my dataset is only 266 records, I did not remove any of the outliers.\n Created 6 bins usign ranges Created bins using ranges:# create bins bins1 = [387,494,541,583,881,1038]. In the future, I would like to obtain more data so I can remove outliers resulting in more equal distribution.' ,
+                            style={
+                                'backgroundColor': 'white' ,
+                                'fontFamily': 'verdana' ,
+                                # 'textAlign':'center',
+                                'gridArea': "H5B_title_01"
 
-                          }
-                      ) ,
-                        html.Img( src=histo_item_img, width=512 , height=400 ) ,  # using the pillow image variable
+                                }
+                            ) ,
+                        html.Img( src=histo_item_img , width=512 , height=400 ) ,  # using the pillow image variable
 
                         ] ) ,
                     html.Div( className="sidebar-wrapper" ) ,
@@ -572,8 +685,8 @@ histo_item.style = {'gridArea': "histo_item"}
 
 histo_text = html.Textarea( "import seaborn as sns\n\n import matplotlib.pyplot as plt \n "
                             "histofig, ax = plt.subplots() \n sns.histplot(data=my_data, x='tenure', "
-                            "kde=True) \n ax.set_title('Histogram and KDE of tenure') \n histofig.show ",
-                             style={'width': '100%' ,
+                            "kde=True) \n ax.set_title('Histogram and KDE of tenure') \n histofig.show " ,
+                            style={'width': '100%' ,
                                    'height': 100 ,
                                    'color': 'white' ,
                                    'backgroundColor': 'black' ,
@@ -597,7 +710,7 @@ cleaned_data_desc = html.Div(
                       'identify columns that need data type conversions, '
                       'identify columns that need to be renamed, '
                       'potential issues that may affect models performance, '
-                      'and identified possible features and target column data, merged files, and dropped duplicated.  '
+                      'and identified possible features and target column data, merged files, and dropped duplicates.  '
                       , style={
                           'backgroundColor': 'white' ,
                           'fontFamily': 'verdana' ,
@@ -606,17 +719,6 @@ cleaned_data_desc = html.Div(
 
                           }
                       ) ,
-                  html.H5(
-                      'After merging several files, I started out with over 30 feature variables.  Used Test Train Split to identify the best performing features'
-                      ' for my prediction model.  These features are listed below:'
-                      , style={
-                          'backgroundColor': 'white' ,
-                          'fontFamily': 'verdana' ,
-                          # 'textAlign':'center',
-                          'gridArea': "H5_title"
-
-                          }
-                      )
 
                   ]
               )
@@ -626,8 +728,8 @@ cleaned_data_top5desc = html.Div(
               children=[
 
                   html.H5(
-                      'Further extracted the following features and target variable data into a separate dataset to be used in my prediction model.'
-                      '  Included top 5 records from my dataset.   ' ,
+                      'Extracted the following best-performing features into a separate dataset based on heatmap results. Will use '
+                      'tenure as the basis of my target variable.  The following shows the top 5 records from my dataset.   ' ,
                       style={
                           'backgroundColor': 'white' ,
                           'fontFamily': 'verdana' ,
@@ -851,7 +953,7 @@ def create_feature_plot_by_type(type):
         g_title = 'Potential Loyalist - Highest number of document<br> management accounts (doc_mgmt)<br> Type vs doc_mgmt'
     elif type == 3:  # Loyalist
         feature = "non_appt_ci"
-        g_title = 'Loyalist - Highest Non call <br> prep appts (non_appt_ci)<br> Type vs Non_appt_ci'
+        g_title = 'Loyalist - 2nd Highest Non call <br> prep appts (non_appt_ci)<br> Type vs Non_appt_ci'
 
     elif type == 4:  # Satified
         feature = "doc_mgmnt"
@@ -939,6 +1041,8 @@ analysis_tabs = dcc.Tabs(
     style={'gridArea': "analyzefeatures"} )
 
 analysis_graph = new_create_subplots( my_data , 2 )
+test_graph_figure = dcc.Graph( figure=analysis_graph , id="test_graph_figure" ,
+                               style={'gridArea': "test_graph_figure"} )
 
 analysis_graph_figure = dcc.Graph( figure=analysis_graph , id="analysis_graph_figure" ,
                                    style={'gridArea': "analysis_graph_figure"} )
@@ -1167,7 +1271,15 @@ highmaint_graph2 = dcc.Graph( figure=pred_figures[1] , id="highmaint-graph2" )
 potloy_graph2 = dcc.Graph( figure=pred_figures[4] , id="potloy-graph2" )
 satisfied_graph2 = dcc.Graph( figure=pred_figures[0] , id="satisfied-graph2" )
 diss_graph2 = dcc.Graph( figure=pred_figures[2] , id="diss-graph2" )
+##############
+# pred_graph = dcc.Graph( figure=pred_figures[4] , id="pred_graph", style={'gridArea': "pred_graph"})
+pred_graph = dcc.Graph( figure=pred_figures[4] , id="pred-graph" ,
+                        style={'gridArea': "pred_graph"} )
 
+###################################
+# pred_graph_item = html.Div( dcc.Graph( figure=pred_figures[4], id="pred_graph" ))
+# pred_graph_item.style={'gridArea': "pred_graph"}
+######################
 # Add graphs to tabs
 analizeloyalist_tab2 = create_tab( loyalist_graph2 , "Loyalist" , "analyzeloyalist2" )
 analizehighmaint_tab2 = create_tab( highmaint_graph2 , "High Maint" , "analyzehighmaint2" )
@@ -1186,14 +1298,16 @@ analysis_tabs2 = dcc.Tabs(
 LogisticRegression_img = Image.open( "assets/LogisticRegression.PNG" )
 LogisticRegressionConfusionMatrix_img = Image.open( "assets/LogisticRegressionConfusionMatrix.PNG" )
 ImprovedScoreUsingRandomForestClassifer_img = Image.open( "assets/ImprovedScoreUsingRandomForestClassifer.PNG" )
-RandomForestPCA_img = Image.open( "assets/RandomForestPCA.PNG" )
-
+RandomForestPCA_img = Image.open( "assets/RandomForestPCA2.png" )
+FindPCA_img = Image.open( "assets/RandomForestPCA1.png" )
+Overfit_img = Image.open( "assets/Overfitting.png" )
 
 ########################################################
 LogisticRegression_img.style = {'gridArea': "LogisticRegression_fig"}
 LogisticRegressionConfusionMatrix_img.style = {'gridArea': "LogisticRegressionConfusionMatrix_fig"}
 ImprovedScoreUsingRandomForestClassifer_img.style = {'gridArea': "ImprovedScoreUsingRandomForestClassifer_fig"}
 RandomForestPCA_img.style = {'gridArea': "RandomForestPCA_fig"}
+Overfit_img.style = {'gridArea': "Overfit_fig"}
 ##########################################################
 
 
@@ -1221,7 +1335,19 @@ title9 = html.Div(
 
                           }
                       ) ,
-                  html.Img( src=LogisticRegression_img , width=512 , height=400 )
+                  html.Img( src=LogisticRegression_img , width=812 , height=900 ) ,
+                  html.H5(
+                      'Tested for Overfitting.  Found model is not overfit so there is no need to tune the model. ' ,
+                      style={
+                          'backgroundColor': 'white' ,
+                          'fontFamily': 'verdana' ,
+                          # 'textAlign':'center',
+                          'gridArea': "Overfit_title_01"
+
+                          }
+                      ) ,
+                  html.Img( src=Overfit_img , width=720 , height=850 )
+
                   ,
                   html.H5(
                       'Evaluate the performance using .score() method. ' ,
@@ -1235,6 +1361,7 @@ title9 = html.Div(
                       ) ,
                   html.Img( src=LogisticRegressionConfusionMatrix_img , width=512 , height=400 )
                   ,
+
                   html.H5(
                       'Improved Logistic Regression score using RandomForestClassifer ' ,
                       style={
@@ -1245,24 +1372,45 @@ title9 = html.Div(
 
                           }
                       ) ,
-                  html.Img( src=ImprovedScoreUsingRandomForestClassifer_img , width=512 , height=400 ),
+                  html.Img( src=ImprovedScoreUsingRandomForestClassifer_img , width=512 , height=400 ) ,
+                  html.H3( ' Introducing PCA to improve score and identify feature importance' ,
+                           style={
+                               'backgroundColor': 'tan' ,
+                               'fontFamily': 'verdana' ,
+                               'textAlign': 'center' ,
+
+                               } ,
+                           id='PCA9' ,
+                           className="PCA9"
+                           ) ,
+                  html.H5(
+                      'Test for Best PCA value ' ,
+                      style={
+                          'backgroundColor': 'white' ,
+                          'fontFamily': 'verdana' ,
+                          # 'textAlign':'center',
+                          'gridArea': "PCAvalue_title"
+
+                          }
+                      ) ,
+                  html.Img( src=FindPCA_img , width=742 , height=900 ) ,
                   html.H5(
                       'Improved RandomForestClassifer score using PCA(n_components=2) ' ,
                       style={
                           'backgroundColor': 'white' ,
                           'fontFamily': 'verdana' ,
                           # 'textAlign':'center',
-                          'gridArea': "H5B_title"
+                          'gridArea': "FindPCA_title"
 
                           }
                       ) ,
-                  html.Img( src=RandomForestPCA_img, width=512 , height=500 ) ,
+                  html.Img( src=RandomForestPCA_img , width=512 , height=500 ) ,
 
                   html.H5(
-                      'Conclusion I was able to run my Random Forect model using PCA and reduce features down to 2 principle '
+                      'Conclusion I was able to run my Random Forest model using PCA and reduce features down to 2 principle '
                       ' components resulting in a accuracy score of 96%. Before, the accuracy '
                       ' results were 0.9285714285714286 so the results are the same. As a result, PCA did improve my performance. '
-                      ' This maybe too accurate. Concerned about overfitting. I would to use the rfc2 with X instead and not X_pca ' ,
+                       ,
                       style={
                           'backgroundColor': 'white' ,
                           'fontFamily': 'verdana' ,
@@ -1466,7 +1614,7 @@ pil_allimg = html.Div(
             html.Div(
                 [
                     html.Div( [
-                        html.H3(  'The Overall micro-average accuracy score is  .70 for all classes'),
+                        html.H3( 'The Overall micro-average accuracy score is  .70 for all classes' ) ,
                         html.Img( src=pil_allimg , width=512 , height=400 ) ,  # using the pillow image variable
 
                         ] ) ,
@@ -1493,7 +1641,7 @@ pil_simg = html.Div(
                     html.Div( [
                         html.H3( 'The Satissifed class has a micro-average accuracy score of .42.  '
                                  'This is an imbalanced class and the accuracy score is .28 less than '
-                                 'the over all average') ,
+                                 'the over all average' ) ,
 
                         html.Img( src=pil_simg , width=512 , height=400 ) ,  # using the pillow image variable
 
@@ -1521,7 +1669,7 @@ pil_dimg = html.Div(
                     html.Div( [
                         html.H3( 'The Dissatissifed class has a micro-average accuracy score of .62.  '
                                  'This is an imbalanced class and the accuracy score is .08 less than the '
-                                 'over all average') ,
+                                 'over all average' ) ,
                         html.Img( src=pil_dimg , width=512 , height=400 ) ,  # using the pillow image variable
 
                         ] ) ,
@@ -1546,8 +1694,8 @@ pil_limg = html.Div(
             html.Div(
                 [
                     html.Div( [
-                        html.H3(  'The Potential Loyalist class has a micro-average accuracy score of .66.  '
-                                  'That is .04 less than the Overall average') ,
+                        html.H3( 'The Potential Loyalist class has a micro-average accuracy score of .66.  '
+                                 'That is .04 less than the Overall average' ) ,
 
                         html.Img( src=pil_limg , width=512 , height=400 ) ,  # using the pillow image variable
 
@@ -1574,7 +1722,7 @@ pil_hmimg = html.Div(
                 [
                     html.Div( [
                         html.H3( 'The High Maintenance class has a micro-average accuracy score of .66. '
-                                 ' That is .04 less than the Overall average') ,
+                                 ' That is .04 less than the Overall average' ) ,
                         html.Img( src=pil_hmimg , width=512 , height=400 ) ,  # using the pillow image variable
 
                         ] ) ,
@@ -1600,7 +1748,7 @@ pil_img = html.Div(
                 [
                     html.Div( [
                         html.H3( 'The Loyalist class has a micro-average accuracy score of .66.  '
-                                 'That is .04 less than the Overall average') ,
+                                 'That is .04 less than the Overall average' ) ,
                         html.Img( src=pil_img , width=512 , height=400 ) ,  # using the pillow image variable
 
                         ] ) ,
@@ -1639,23 +1787,13 @@ pil_dimg.style = {'gridArea': "Dissatisfied_fig"}
 pil_simg.style = {'gridArea': "Satisfied_fig"}
 pil_allimg.style = {'gridArea': "ROC2_All_fig"}
 
-
-
-
-
-
-
-
 ######################################
-
-
-
 
 
 # Add images  to tabs
 
 # roc_tab_loyal_ROC
-roc_tab_loyal = create_tab( pil_img, "Loyalist" , "loy_roc" )
+roc_tab_loyal = create_tab( pil_img , "Loyalist" , "loy_roc" )
 roc_tab_highmaint = create_tab( pil_hmimg , "High Maint" , "hm_roc" )
 roc_tab_potloy = create_tab( pil_limg , "Potential Loyalist" , "pl_roc" )
 roc_tab_satis = create_tab( pil_simg , "Satisfied" , "sat_roc" )
@@ -1708,11 +1846,20 @@ conclusion_title = html.Div(
 # 'In conclustion, I was able to determine there are several factors that affect customer cancellation.  The most prominent features are non-appt calls and prep time.  I was able to create customer types based on different feature however the imbalance of my classes affected my micro-average accuracy score of my multi-classification model.  In the future, I would like to gather more data under the "satisfied" classifcation'
 ################################## create dataframe tables ################
 
-
 # *********************************************************************************************************
 app.layout = html.Div( [
     dbc.Row( [dbc.Col( title , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( links , width=5 )] , justify="around" ) ,
+
+    dbc.Row( [dbc.Col( purch_cancel_code_item , width=5 )] , justify="around" ) ,
+    ###
+    #Relationships between variables
+    dbc.Row( [dbc.Col( title1C , width=11 )] , justify="around" ) ,
+    dbc.Row( [dbc.Col( text_1 , width=3 ) , dbc.Col( DistriGraph_div , width=8 )] , justify="around" ) ,
+    dbc.Row( [dbc.Col( graph_03 , width=11 )] , justify="around" ) ,
+    dbc.Row( [dbc.Col( correlation_item , width=11 )] , justify="around" ) ,
+
+    ##
     dbc.Row( [dbc.Col( Purchase_activity_desc , width=11 )] , justify="around" ) ,
     # dbc.Row( [dbc.Col(purchase_fig,width=5),dbc.Col(cancel_fig,width=6)], justify="around"),
     dbc.Row( [dbc.Col( title7 , width=11 )] , justify="around" ) ,
@@ -1721,28 +1868,27 @@ app.layout = html.Div( [
     dbc.Row( [dbc.Col( top5_tab , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( cleaned_data_top5desc , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( extract_feature_table , width=11 )] , justify="around" ) ,
-    dbc.Row( [dbc.Col( title1C , width=11 )] , justify="around" ) ,
-    dbc.Row( [dbc.Col( text_1 , width=3 ) , dbc.Col( DistriGraph_div , width=8 )] , justify="around" ) ,
 
-    dbc.Row( [dbc.Col( graph_03 , width=11 )] , justify="around" ) ,
+
 
     dbc.Row( [dbc.Col( title2B , width=11 )] , justify="around" ) ,
-
-    # dbc.Row( [dbc.Col( text_2 , width=11 )] , justify="around" ) ,
-
-    dbc.Row( [dbc.Col( text_2 , width=3 ) ,dbc.Col(histo_text,width=8)] , justify="around" ) ,
-    dbc.Row([dbc.Col( histo_item , width=11 )] , justify="around" ) ,
-    dbc.Row( [dbc.Col( graph_05 , width=5 ) , dbc.Col( graph_07 , width=6 )] , justify="around" ) ,
+    dbc.Row( [dbc.Col( text_2 , width=3 ) , dbc.Col( histo_text , width=8 )] , justify="around" ) ,
+    dbc.Row( [dbc.Col( histo_item , width=11 )] , justify="around" ) ,
+    dbc.Row( [ dbc.Col( graph_07 , width=6 ) ] , justify="around" ) ,#dbc.Col( graph_05 , width=5 ),
     dbc.Row( [dbc.Col( title5A , width=11 )] , justify="around" ) ,
     # dbc.Row( [dbc.Col(ConfusionMatrix_item,width=11)],justify="around"),
     dbc.Row( [dbc.Col( avg_table , width=5 ) , dbc.Col( analysis_graph_figure , width=5 )] , justify="around" ) ,
     # dbc.Row( [dbc.Col(avg_table,width=5), dbc.Col(analysis_tabs,width=5)], justify="around" ),
-    # dbc.Row([dbc.Col(analysis_graph_figure,width=11)],justify="around"),
+
     dbc.Row( [dbc.Col( title5B , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( graph_01 , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( title9 , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( title_pred , width=11 )] , justify="around" ) ,
-    dbc.Row( [dbc.Col( Pred_table_tabs , width=6 ) , dbc.Col( analysis_tabs2 , width=5 )] , justify="around" ) ,  #
+
+    dbc.Row( [dbc.Col( pred_graph , width=11 )] , justify="around" ) ,
+    dbc.Row( [dbc.Col( Pred_table_tabs , width=11 )] , justify="around" ) ,
+    #dbc.Row( [dbc.Col( analysis_tabs2 , width=11 )] , justify="around" ) ,  #
+
     dbc.Row( [dbc.Col( All_pred_fig_dv , width=11 )] , justify="around" ) ,
 
     dbc.Row( [dbc.Col( title_ROC , width=11 )] , justify="around" ) ,
@@ -1750,13 +1896,27 @@ app.layout = html.Div( [
     dbc.Row( [dbc.Col( roc_tabs , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( conclusion_title , width=11 )] , justify="around" ) ,
 
-    # dbc.Row( [dbc.Col( conclusion_title , width=11 )] , justify="around" ),
-    # dbc.Row( [dbc.Col(, width=11 )], justify="around" ),
-    # dbc.Row([dbc.Col(image_card, width=3), dbc.Col(graph_card, width=8)], justify="around")
     ] )
 
 
-# *********************************************************************************************************
+##############################
+@app.callback(
+    Output( "pred-graph" , "figure" ) ,
+    Input( "pred-table-tabs" , "value" )
+    )
+def change_pred_graph(group):
+    if group == "predsatisfied":
+        return return_type_prediction_subplots( Pred_Satisfied_df , 4 )
+    elif group == "predhigh_maint":
+        return return_type_prediction_subplots( Pred_High_Maintenance_df , 0 )
+    elif group == "preddissatisfied":
+        return return_type_prediction_subplots( Pred_dissatisfied_df , 1 )
+    elif group == "predloyalist":
+        return return_type_prediction_subplots( Pred_Loyalist_df , 3 )
+    else:
+        return return_type_prediction_subplots( Pred_Potential_Loyalist_df , 2 )
+
+
 
 
 @app.callback(
