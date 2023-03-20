@@ -1,10 +1,10 @@
 from dash import Dash , html , dcc , Input , Output , State , no_update
 import pandas as pd
-from dash import Dash , html , dcc
 import base64
 # import seaborn as sns
 from PIL import Image
 import dash_bootstrap_components as dbc
+
 
 date_data = pd.read_csv( "dates_data.csv" )
 
@@ -141,7 +141,7 @@ links = html.Div(
                 href="https://git.generalassemb.ly/mfrancis/marlainna-capstone-app/blob/main/src/app.py" ,
                 style={'gridArea': "link7"} ) , html.Br() ,
             html.A(
-                'Capstone-Demo Repository- run on Render Server (code used to render image files differ between files). Moved files to GitHub.  Deployed to Render. ' ,
+                'Capstone-Demo Repository- run on Render Server. Moved files to GitHub.  Deployed to Render. ' ,
                 href="https://github.com/yourexodus/mfrancis_capstone/blob/main/src/app.py" ,
                 style={'gridArea': "link8"} ) , html.Br() ,
             html.A( 'Resource link:  How to deploy using Render' ,
@@ -1848,6 +1848,7 @@ conclusion_title = html.Div(
 
 # *********************************************************************************************************
 app.layout = html.Div( [
+
     dbc.Row( [dbc.Col( title , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( links , width=5 )] , justify="around" ) ,
 
@@ -1899,7 +1900,10 @@ app.layout = html.Div( [
     ] )
 
 
-##############################
+
+
+
+
 @app.callback(
     Output( "pred-graph" , "figure" ) ,
     Input( "pred-table-tabs" , "value" )
