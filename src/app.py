@@ -59,7 +59,8 @@ title = html.Div(
 
                           }
                       ) ,
-
+                    #html.Iframe( src="assets/Presentation1.mp4" ,
+                    #             style={"height": "100%", "width": "100%"} )
                   ] ,
               )
     )
@@ -154,7 +155,8 @@ links = html.Div(
         )
     )
 ########## END OF:  First Row : title , links, header, graph -- complete #############################
-
+presentation_item = html.Iframe( src="assets/Presentation1.mp4" ,
+                                 style={"height": "700", "width": "700"} )
 ############## begin correlation graph
 
 ################# end correlation graph ################################
@@ -172,6 +174,12 @@ fig_daydiff.update_layout( height=400 , width=650 ,
                            yaxis_title="tenure" , xaxis_title="Diff: Purchase_dt & CU_Start_dt" )
 
 ##############
+
+
+
+
+
+#########################
 correlation_img = Image.open( "assets/CorrelationHeatmap_fig.png" )
 correlation_item = html.Div(
     [
@@ -1851,7 +1859,7 @@ app.layout = html.Div( [
 
     dbc.Row( [dbc.Col( title , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( links , width=5 )] , justify="around" ) ,
-
+    dbc.Row( [dbc.Col(presentation_item, width=5)], justify="around"),
     dbc.Row( [dbc.Col( purch_cancel_code_item , width=5 )] , justify="around" ) ,
     ###
     #Relationships between variables
