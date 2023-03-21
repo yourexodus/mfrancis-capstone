@@ -164,12 +164,9 @@ presentation_item = html.Iframe( src="assets/Presentation1.mp4" ,
 prentvideo_div = html.Div(
     html.Div( className="prentvideo2" ,
               children=[
-                    html.Iframe( src="assets/recordshortVersion.mp4" ,
-                                 style={"height": "800", "width": "800"} ),
-                    html.Iframe( src="assets/Presentation1.mp4" ,
-                                 style={"height": "800", "width": "800"} ),
+                    html.Br() , html.Br() ,
                   html.H5(
-                      'prentvideo.' ,
+                      'Video# 1 - 4min video short. Video# 2 - 22min Extended version with demo' ,
                       style={
                           'backgroundColor': 'white' ,
                           'fontFamily': 'verdana' ,
@@ -180,6 +177,11 @@ prentvideo_div = html.Div(
                       id='prentvideoText' ,
                       className="prentvideoText"
                       ) ,
+                    html.Iframe( src="assets/recordshortVersion.mp4" ,
+                                 style={"height": "800", "width": "800"} ),
+                    html.Iframe( src="assets/Presentation1.mp4" ,
+                                 style={"height": "800", "width": "800"} ),
+
 
                   ] ,
               )
