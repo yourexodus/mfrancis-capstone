@@ -1443,7 +1443,7 @@ title9 = html.Div(
 
                           }
                       ) ,
-                  html.Img(src=RandomForestPCA_img , width=512 , height=500 ) ,
+                  html.Img(src=RandomForestPCA_img , width=712 , height=700 ) ,
 
                   html.H5(
                       'Conclusion I was able to run my Random Forest model using PCA and reduce features down to 2 principle '
