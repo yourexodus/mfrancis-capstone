@@ -155,8 +155,11 @@ links = html.Div(
         )
     )
 ########## END OF:  First Row : title , links, header, graph -- complete #############################
+shortvideo_item = html.Iframe( src="assets/recordshortVersion.mp4.mp4" ,
+                                 style={"height": "800", "width": "800"} )
+
 presentation_item = html.Iframe( src="assets/Presentation1.mp4" ,
-                                 style={"height": "700", "width": "700"} )
+                                 style={"height": "800", "width": "800"} )
 ############## begin correlation graph
 
 ################# end correlation graph ################################
@@ -1859,6 +1862,7 @@ app.layout = html.Div( [
 
     dbc.Row( [dbc.Col( title , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( links , width=5 )] , justify="around" ) ,
+    dbc.Row( [dbc.Col(shortvideo_item, width=5)], justify="around"),
     dbc.Row( [dbc.Col(presentation_item, width=5)], justify="around"),
     dbc.Row( [dbc.Col( purch_cancel_code_item , width=5 )] , justify="around" ) ,
     ###
