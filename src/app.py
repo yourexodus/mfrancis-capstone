@@ -155,12 +155,38 @@ links = html.Div(
         )
     )
 ########## END OF:  First Row : title , links, header, graph -- complete #############################
-shortvideo_item = html.Iframe( src="assets/recordshortVersion.mp4.mp4" ,
+shortvideo_item = html.Iframe( src="assets/recordshortVersion.mp4" ,
                                  style={"height": "800", "width": "800"} )
 
 presentation_item = html.Iframe( src="assets/Presentation1.mp4" ,
                                  style={"height": "800", "width": "800"} )
 ############## begin correlation graph
+prentvideo_div = html.Div(
+    html.Div( className="prentvideo2" ,
+              children=[
+                    html.Iframe( src="assets/recordshortVersion.mp4" ,
+                                 style={"height": "800", "width": "800"} ),
+                    html.Iframe( src="assets/Presentation1.mp4" ,
+                                 style={"height": "800", "width": "800"} ),
+                  html.H5(
+                      'prentvideo.' ,
+                      style={
+                          'backgroundColor': 'white' ,
+                          'fontFamily': 'verdana' ,
+                          # 'textAlign':'center',
+                          'gridArea': "H5prentvideo"
+
+                          } ,
+                      id='prentvideoText' ,
+                      className="prentvideoText"
+                      ) ,
+
+                  ] ,
+              )
+    )
+
+
+#############3
 
 ################# end correlation graph ################################
 my_data = pd.read_csv( "dashboard_data.csv" )
@@ -1862,8 +1888,9 @@ app.layout = html.Div( [
 
     dbc.Row( [dbc.Col( title , width=11 )] , justify="around" ) ,
     dbc.Row( [dbc.Col( links , width=5 )] , justify="around" ) ,
-    dbc.Row( [dbc.Col(shortvideo_item, width=5)], justify="around"),
-    dbc.Row( [dbc.Col(presentation_item, width=5)], justify="around"),
+    dbc.Row( [dbc.Col(prentvideo_div, width=5)], justify="around"),
+    #dbc.Row( [dbc.Col(presentation_item, width=5)], justify="around"),
+
     dbc.Row( [dbc.Col( purch_cancel_code_item , width=5 )] , justify="around" ) ,
     ###
     #Relationships between variables
