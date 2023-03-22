@@ -186,8 +186,7 @@ prentvideo_div = html.Div(
                                 }
                             ) ,
 
-                  html.H5(
-                      'Video# 1 - 4min video short. ' ,
+                  html.H5( 'Video# 1 - 4min video short. ' ,
                       style={
                           'backgroundColor': 'white' ,
                           'fontFamily': 'verdana' ,
@@ -252,8 +251,7 @@ correlation_item = html.Div(
                 [
                     html.Div( [
                             html.H5(
-                            'The correlation heatmap illustrates there is a close relationship between variable in red and a more distant relationship between the variables in blue.'
-                            'After examaming the heatmap, I identified the following best-performaing variables: rec-acct, non-appt, appt_ci, call-prep, days_diff_purch_custartdt' ,
+                            'The correlation heatmap illustrates there is a close relationship between variable in red and a more distant relationship between the variables in blue. After examaming the heatmap, I identified the following best-performaing variables: rec-acct, non-appt, appt_ci, call-prep, days_diff_purch_custartdt' ,
                             style={
                                 'backgroundColor': 'white' ,
                                 'fontFamily': 'verdana' ,
@@ -262,7 +260,7 @@ correlation_item = html.Div(
 
                                 }
                             ) ,
-                        html.Img( src=correlation_img , width=840 , height=800 ) ,
+                        html.Img( src=correlation_img , width=840 , height=800 )
                         # using the pillow image variable
 
                         ] ) ,
@@ -1386,7 +1384,6 @@ Overfit_img.style = {'gridArea': "Overfit_fig"}
 title9 = html.Div(
     html.Div( className="trend_9" ,
               children=[
-
                   html.H3( ' Model Performance' ,
                            style={
                                'backgroundColor': 'tan' ,
@@ -1398,7 +1395,8 @@ title9 = html.Div(
                            className="title9"
                            ) ,
                            html.H5(
-                            'Here I evaluated my Logistic Regression model using the score method. I took the difference of my Test and Train accuracy and the difference was very small.  I also used KFolds to graph the mean absolute error against the folds.  Model indicated the test and train MAE range was very small.  As a result, I can conclude the model is not overfit.  I was able to improve the score using a RandomForestClassifier.' ,
+                            'Here I evaluated my Logistic Regression model using the score method. I took the difference between Test and Train to measure overfitting and found the difference to very samll.  I also used KFolds to graph the mean absolute error against the folds.  Model indicated the test and train MAE range was very small.  '
+                            'As a result, I can conclude the model is not overfit.  I was able to improve the score using a RandomForestClassifier.' ,
                             style={
                                 'backgroundColor': 'white' ,
                                 'fontFamily': 'verdana' ,
@@ -1423,7 +1421,7 @@ title9 = html.Div(
                       ) ,
                   html.Img( src=LogisticRegression_img , width=812 , height=900 ) ,
                   html.H5(
-                      'Tested for Overfitting.  Found model is not overfit so there is no need to tune the model. ' ,
+                      'Test for Overfitting:  Found model is not overfit so there is no need to tune the model. ' ,
                       style={
                           'backgroundColor': 'white' ,
                           'fontFamily': 'verdana' ,
@@ -1470,7 +1468,7 @@ title9 = html.Div(
                            className="PCA9"
                            ) ,
                     html.H5(
-                      'Was able to apply dimension reduction and impore my accuracy score using PCA. Plotted the PCA performance below and to show the performance peaks when N_neighbors is 2. ALso used the pca components to list feature importance.  Applied PCA components to my RandaomForestClassifer' ,
+                      'Was able to apply dimension reduction and impore my accuracy score using PCA. Plotted the PCA performance below and to show the performance peaks when N_neighbors is 2.  ALso used the pca components to list feature importance.  Applied PCA components to my RandaomForestClassifer' ,
                       style={
                           'backgroundColor': 'white' ,
                           'fontFamily': 'verdana' ,
@@ -1479,7 +1477,7 @@ title9 = html.Div(
 
                           }
                       )
-                  ] ,
+                   ,
                   html.H5(
                       'Test for Best PCA value ' ,
                       style={
