@@ -165,6 +165,17 @@ prentvideo_div = html.Div(
     html.Div( className="prentvideo2" ,
               children=[
                     html.Br() , html.Br() ,
+                html.H3( '4-min Short: Files and Deployment' ,
+                           style={
+                               'backgroundColor': 'tan' ,
+                               'fontFamily': 'verdana' ,
+                               'textAlign': 'center' ,
+
+                               } ,
+                           id='title_video' ,
+                           className="title_video"
+                           ) ,
+
                   html.H5(
                       'Video# 1 - 4min video short. Video# 2 - 22min Extended version with demo' ,
                       style={
@@ -178,7 +189,19 @@ prentvideo_div = html.Div(
                       className="prentvideoText"
                       ) ,
                     html.Iframe( src="assets/recordshortVersion.mp4" ,
-                                 style={"height": "800", "width": "800"} ),
+                                 style={"height": "1600", "width": "1600"} ),
+                     html.H5(
+                      ' Video# 2 - 22min Extended version with demo' ,
+                      style={
+                          'backgroundColor': 'white' ,
+                          'fontFamily': 'verdana' ,
+                          # 'textAlign':'center',
+                          'gridArea': "H5prentvideo"
+
+                          } ,
+                      id='prentvideoText' ,
+                      className="prentvideoText"
+                      ) ,
                     html.Iframe( src="assets/Presentation1.mp4" ,
                                  style={"height": "800", "width": "800"} ),
 
