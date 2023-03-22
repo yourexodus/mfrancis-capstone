@@ -177,7 +177,7 @@ prentvideo_div = html.Div(
                            ) ,
 
                   html.H5(
-                      'Video# 1 - 4min video short. Video# 2 - 22min Extended version with demo' ,
+                      'Video# 1 - 4min video short. ' ,
                       style={
                           'backgroundColor': 'white' ,
                           'fontFamily': 'verdana' ,
