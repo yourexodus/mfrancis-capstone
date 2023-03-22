@@ -165,7 +165,7 @@ prentvideo_div = html.Div(
     html.Div( className="prentvideo2" ,
               children=[
                     html.Br() , html.Br() ,
-                html.H3( '4-min Short: Files and Deployment' ,
+                html.H3( 'Videos and Deployment' ,
                            style={
                                'backgroundColor': 'tan' ,
                                'fontFamily': 'verdana' ,
@@ -175,6 +175,16 @@ prentvideo_div = html.Div(
                            id='title_video' ,
                            className="title_video"
                            ) ,
+                            html.H5(
+                            'The 4-minute video covers a brief file description and overview of how this project was deployed to the web.  The extended video covers a more in-depth demo covering the initial deployment and how to edit an existing deployment on the Render server' ,
+                            style={
+                                'backgroundColor': 'white' ,
+                                'fontFamily': 'verdana' ,
+                                # 'textAlign':'center',
+                                'gridArea': "video_header3"
+
+                                }
+                            ) ,
 
                   html.H5(
                       'Video# 1 - 4min video short. ' ,
@@ -1387,6 +1397,20 @@ title9 = html.Div(
                            id='title9' ,
                            className="title9"
                            ) ,
+                           html.H5(
+                            'Here I evaluated my Logistic Regression model using the score method. I took the difference of my Test and Train accuracy and the difference was very small.  I also used KFolds to graph the mean absolute error against the folds.  Model indicated the test and train MAE range was very small.  As a result, I can conclude the model is not overfit.  I was able to improve the score using a RandomForestClassifier.' ,
+                            style={
+                                'backgroundColor': 'white' ,
+                                'fontFamily': 'verdana' ,
+                                # 'textAlign':'center',
+                                'gridArea': "model_header3"
+
+                                }
+                            ) ,
+
+
+
+
                   html.H5(
                       'Prediction accuracy using Logistic Regression Model ' ,
                       style={
@@ -1445,6 +1469,17 @@ title9 = html.Div(
                            id='PCA9' ,
                            className="PCA9"
                            ) ,
+                    html.H5(
+                      'Was able to apply dimension reduction and impore my accuracy score using PCA. Plotted the PCA performance below and to show the performance peaks when N_neighbors is 2. ALso used the pca components to list feature importance.  Applied PCA components to my RandaomForestClassifer' ,
+                      style={
+                          'backgroundColor': 'white' ,
+                          'fontFamily': 'verdana' ,
+                          # 'textAlign':'center',
+                          'gridArea': "PCA_improve_score"
+
+                          }
+                      )
+                  ] ,
                   html.H5(
                       'Test for Best PCA value ' ,
                       style={
@@ -1501,7 +1536,7 @@ title_pred = html.Div(
                            ) ,
 
                   html.H5(
-                      'Made predictions using RandomForestClassifier model. Appended scores to dataframe.  Click each tab to view prediction results ' ,
+                      'I made predictions using RandomForestClassifier model. Appended scores to dataframe.  Click each tab to view prediction results ' ,
                       style={
                           'backgroundColor': 'white' ,
                           'fontFamily': 'verdana' ,
