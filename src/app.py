@@ -1505,8 +1505,8 @@ title9 = html.Div(
 
                   html.H5(
                       'Conclusion I was able to run my Random Forest model using PCA and reduce features down to 2 principle '
-                      ' components resulting in a accuracy score of 96%. Before, the accuracy '
-                      ' results were 0.9285714285714286 so the results are the same. As a result, PCA did improve my performance. '
+                      ' components resulting in a accuracy score of 97%. Before, the accuracy '
+                      ' results were 0.94 so the results improved. As a result, PCA did improve my performance. '
                        ,
                       style={
                           'backgroundColor': 'white' ,
