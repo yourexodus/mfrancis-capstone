@@ -143,7 +143,7 @@ links = html.Div(
                 style={'gridArea': "link7"} ) , html.Br() ,
             html.A(
                 'Capstone-Demo Repository- run on Render Server. Moved files to GitHub.  Deployed to Render. ' ,
-                href="https://github.com/yourexodus/mfrancis_capstone/blob/main/src/app.py" ,
+                href="https://github.com/yourexodus/mfrancis-capstone" ,
                 style={'gridArea': "link8"} ) , html.Br() ,
             html.A( 'Resource link:  How to deploy using Render' ,
                     href="https://www.youtube.com/watch?v=XWJBJoV5ywwgit " ,
