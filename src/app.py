@@ -211,8 +211,8 @@ prentvideo_div = html.Div(
                           'gridArea': "H5prentvideo"
 
                           } ,
-                      id='prentvideoText' ,
-                      className="prentvideoText"
+                      id='prentvideoText2' ,
+                      className="prentvideoText2"
                       ) ,
                     html.Iframe( src="assets/Presentation1.mp4" ,
                                  style={"height": "800", "width": "100%"} ),
