@@ -158,10 +158,10 @@ links = html.Div(
 #app.get_asset_url(
 
 shortvideo_item = html.Iframe( src=app.get_asset_url("recordshortVersion.mp4") ,
-                                 style={"height": "800", "width": "800"} )
+                                 style={"height": "800", "width": "100%"} )
 
 presentation_item = html.Iframe( src="assets/Presentation1.mp4" ,
-                                 style={"height": "800", "width": "800"} )
+                                 style={"height": "800", "width": "100%"} )
 ############## begin correlation graph
 prentvideo_div = html.Div(
     html.Div( className="prentvideo2" ,
@@ -201,7 +201,7 @@ prentvideo_div = html.Div(
                       className="prentvideoText"
                       ) ,
                     html.Iframe( src="assets/recordshortVersion.mp4" ,
-                                 style={"height": "700", "width": "100%"} ),
+                                 style={"height": "700", "width": "700"} ),
                      html.H5(
                       ' Video# 2 - 22min Extended version with demo' ,
                       style={
@@ -215,7 +215,7 @@ prentvideo_div = html.Div(
                       className="prentvideoText2"
                       ) ,
                     html.Iframe( src="assets/Presentation1.mp4" ,
-                                 style={"height": "800", "width": "100%"} ),
+                                 style={"height": "800", "width": "800"} ),
 
 
                   ] ,
@@ -291,9 +291,9 @@ correlation_item.style = {'gridArea': "correlation_ga"}
 
 ##################
 #app.get_asset_url( 'tenure_distr_dist_plot.png' )
-BoxPlot_img = app.get_asset_url("assets/BoxPlot_fig.png")
-dataStatistics_img = app.get_asset_url("assets/dataStatistics.PNG")
-purch_cancel_code_img = app.get_asset_url( "assets/UnderstandingTheData.png" )
+BoxPlot_img = app.get_asset_url("BoxPlot_fig.png")
+dataStatistics_img = app.get_asset_url("dataStatistics.PNG")
+purch_cancel_code_img = app.get_asset_url( "UnderstandingTheData.png" )
 
 
 
@@ -1381,12 +1381,12 @@ analysis_tabs2 = dcc.Tabs(
 
 ##################################
 #app.get_asset_url( 'tenure_distr_dist_plot.png' )
-LogisticRegression_img = app.get_asset_url( 'assets/LogisticRegression.PNG' )
-LogisticRegressionConfusionMatrix_img = app.get_asset_url( 'assets/LogisticRegressionConfusionMatrix.PNG' )
-ImprovedScoreUsingRandomForestClassifer_img = app.get_asset_url( 'assets/ImprovedScoreUsingRandomForestClassifer.PNG' )
-RandomForestPCA_img = app.get_asset_url( 'assets/RandomForestPCA2.png' )
-FindPCA_img = app.get_asset_url( 'assets/RandomForestPCA1.png' )
-Overfit_img = app.get_asset_url( 'assets/Overfitting.png' )
+LogisticRegression_img = app.get_asset_url( 'LogisticRegression.PNG' )
+LogisticRegressionConfusionMatrix_img = app.get_asset_url( 'LogisticRegressionConfusionMatrix.PNG' )
+ImprovedScoreUsingRandomForestClassifer_img = app.get_asset_url( 'ImprovedScoreUsingRandomForestClassifer.PNG' )
+RandomForestPCA_img = app.get_asset_url( 'RandomForestPCA2.png' )
+FindPCA_img = app.get_asset_url( 'RandomForestPCA1.png' )
+Overfit_img = app.get_asset_url( 'Overfitting.png' )
 
 #LogisticRegression_img = Image.open( "assets/LogisticRegression.PNG" )
 #LogisticRegressionConfusionMatrix_img = Image.open( "assets/LogisticRegressionConfusionMatrix.PNG" )
