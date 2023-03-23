@@ -1721,7 +1721,7 @@ title_ROC = html.Div(
     )
 ##from PIL import Image
 #app.get_asset_url( '
-pil_img = app.get_asset_url( 'Roc_curve_Loyalist_fig.png" )
+pil_img = app.get_asset_url( 'Roc_curve_Loyalist_fig.png' )
 pil_hmimg = app.get_asset_url( 'High_Maintenance_fig.png' )
 pil_limg = app.get_asset_url( 'Potential_Loyalist_fig.png' )
 pil_dimg = app.get_asset_url( 'Dissatisfied_fig.png' )
