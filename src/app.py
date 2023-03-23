@@ -249,7 +249,7 @@ fig_daydiff.update_layout( height=400 , width=650 ,
 #histo_item = html.Div( html.Img( src=app.get_asset_url( 'tenure_distr_dist_plot.png' ) , width=512 , height=400 ) ,
 #                       id="histo_item_fig" )
 #correlation_img = Image.open( "assets/CorrelationHeatmap_fig.png" )
-correlation_img = app.get_asset_url( 'tenure_distr_dist_plot.png' )
+correlation_img = app.get_asset_url( 'CorrelationHeatmap_fig.png' )
 correlation_item = html.Div(
     [
         html.Div(
