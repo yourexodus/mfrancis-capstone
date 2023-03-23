@@ -1396,11 +1396,11 @@ Overfit_img = app.get_asset_url( 'assets/Overfitting.png' )
 #Overfit_img = Image.open( "assets/Overfitting.png" )
 
 ########################################################
-LogisticRegression_img.style = {'gridArea': "LogisticRegression_fig"}
-LogisticRegressionConfusionMatrix_img.style = {'gridArea': "LogisticRegressionConfusionMatrix_fig"}
-ImprovedScoreUsingRandomForestClassifer_img.style = {'gridArea': "ImprovedScoreUsingRandomForestClassifer_fig"}
-RandomForestPCA_img.style = {'gridArea': "RandomForestPCA_fig"}
-Overfit_img.style = {'gridArea': "Overfit_fig"}
+#LogisticRegression_img.style = {'gridArea': "LogisticRegression_fig"}
+#LogisticRegressionConfusionMatrix_img.style = {'gridArea': "LogisticRegressionConfusionMatrix_fig"}
+#ImprovedScoreUsingRandomForestClassifer_img.style = {'gridArea': "ImprovedScoreUsingRandomForestClassifer_fig"}
+#RandomForestPCA_img.style = {'gridArea': "RandomForestPCA_fig"}
+#Overfit_img.style = {'gridArea': "Overfit_fig"}
 ##########################################################
 
 
