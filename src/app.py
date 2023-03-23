@@ -2,7 +2,7 @@ from dash import Dash , html , dcc , Input , Output , State , no_update
 import pandas as pd
 import base64
 # import seaborn as sns
-from PIL import Image
+#from PIL import Image
 import dash_bootstrap_components as dbc
 
 
@@ -155,7 +155,9 @@ links = html.Div(
         )
     )
 ########## END OF:  First Row : title , links, header, graph -- complete #############################
-shortvideo_item = html.Iframe( src="assets/recordshortVersion.mp4" ,
+#app.get_asset_url(
+
+shortvideo_item = html.Iframe( src=app.get_asset_url("recordshortVersion.mp4") ,
                                  style={"height": "800", "width": "800"} )
 
 presentation_item = html.Iframe( src="assets/Presentation1.mp4" ,
@@ -244,7 +246,10 @@ fig_daydiff.update_layout( height=400 , width=650 ,
 
 
 #########################
-correlation_img = Image.open( "assets/CorrelationHeatmap_fig.png" )
+#histo_item = html.Div( html.Img( src=app.get_asset_url( 'tenure_distr_dist_plot.png' ) , width=512 , height=400 ) ,
+#                       id="histo_item_fig" )
+#correlation_img = Image.open( "assets/CorrelationHeatmap_fig.png" )
+correlation_img = app.get_asset_url( 'tenure_distr_dist_plot.png' )
 correlation_item = html.Div(
     [
         html.Div(
@@ -285,10 +290,16 @@ correlation_item.style = {'gridArea': "correlation_ga"}
 
 
 ##################
+#app.get_asset_url( 'tenure_distr_dist_plot.png' )
+BoxPlot_img = app.get_asset_url("assets/BoxPlot_fig.png")
+dataStatistics_img = app.get_asset_url("assets/dataStatistics.PNG")
+purch_cancel_code_img = app.get_asset_url( "assets/UnderstandingTheData.png" )
 
-BoxPlot_img = Image.open("assets/BoxPlot_fig.png")
-dataStatistics_img = Image.open("assets/dataStatistics.PNG")
-purch_cancel_code_img = Image.open( "assets/UnderstandingTheData.png" )
+
+
+#BoxPlot_img = Image.open("assets/BoxPlot_fig.png")
+#dataStatistics_img = Image.open("assets/dataStatistics.PNG")
+#purch_cancel_code_img = Image.open( "assets/UnderstandingTheData.png" )
 purch_cancel_code_item = html.Div(
     [
         html.Div(
@@ -719,7 +730,9 @@ histofig = px.histogram( my_data , x="tenure" )
 bin_figures.append( histofig )
 
 # from PIL import Image
-histo_item_img = Image.open( "assets/tenure_distr_dist_plot.png" )
+#histo_item_img = Image.open( "assets/tenure_distr_dist_plot.png" )
+histo_item_img = app.get_asset_url( 'tenure_distr_dist_plot.png' )
+
 histo_item = html.Div(
     [
         html.Div(
@@ -1367,12 +1380,20 @@ analysis_tabs2 = dcc.Tabs(
     style={'gridArea': "analyzefeatures2"} )
 
 ##################################
-LogisticRegression_img = Image.open( "assets/LogisticRegression.PNG" )
-LogisticRegressionConfusionMatrix_img = Image.open( "assets/LogisticRegressionConfusionMatrix.PNG" )
-ImprovedScoreUsingRandomForestClassifer_img = Image.open( "assets/ImprovedScoreUsingRandomForestClassifer.PNG" )
-RandomForestPCA_img = Image.open( "assets/RandomForestPCA2.png" )
-FindPCA_img = Image.open( "assets/RandomForestPCA1.png" )
-Overfit_img = Image.open( "assets/Overfitting.png" )
+#app.get_asset_url( 'tenure_distr_dist_plot.png' )
+LogisticRegression_img = app.get_asset_url( 'assets/LogisticRegression.PNG' )
+LogisticRegressionConfusionMatrix_img = app.get_asset_url( 'assets/LogisticRegressionConfusionMatrix.PNG' )
+ImprovedScoreUsingRandomForestClassifer_img = app.get_asset_url( 'assets/ImprovedScoreUsingRandomForestClassifer.PNG' )
+RandomForestPCA_img = app.get_asset_url( 'assets/RandomForestPCA2.png' )
+FindPCA_img = app.get_asset_url( 'assets/RandomForestPCA1.png' )
+Overfit_img = app.get_asset_url( 'assets/Overfitting.png' )
+
+#LogisticRegression_img = Image.open( "assets/LogisticRegression.PNG" )
+#LogisticRegressionConfusionMatrix_img = Image.open( "assets/LogisticRegressionConfusionMatrix.PNG" )
+#ImprovedScoreUsingRandomForestClassifer_img = Image.open( "assets/ImprovedScoreUsingRandomForestClassifer.PNG" )
+#RandomForestPCA_img = Image.open( "assets/RandomForestPCA2.png" )
+#FindPCA_img = Image.open( "assets/RandomForestPCA1.png" )
+#Overfit_img = Image.open( "assets/Overfitting.png" )
 
 ########################################################
 LogisticRegression_img.style = {'gridArea': "LogisticRegression_fig"}
@@ -1584,8 +1605,8 @@ All_pred_fig_dv = dcc.Graph( figure=All_pred_fig_01 ,
 ## COnfustion matrix section
 
 # from PIL import Image
-
-ConfusionMatrix_item = html.Div( html.Img( src=r'assets/ConfusionMatrix.png' , alt='image' ) ,
+#app.get_asset_url( '
+ConfusionMatrix_item = html.Div( html.Img( src=app.get_asset_url( 'ConfusionMatrix.png') , alt='image' ) ,
                                  id="ConfusionMatrix_item" )
 
 ConfusionMatrix_item.style = {'grid Area': "ConfusionMatrix_item"}
@@ -1698,17 +1719,14 @@ title_ROC = html.Div(
                   ] ,
               )
     )
-#
-
-
-from PIL import Image
-
-pil_img = Image.open( "assets/Roc_curve_Loyalist_fig.png" )
-pil_hmimg = Image.open( 'assets/High_Maintenance_fig.png' )
-pil_limg = Image.open( 'assets/Potential_Loyalist_fig.png' )
-pil_dimg = Image.open( 'assets/Dissatisfied_fig.png' )
-pil_simg = Image.open( 'assets/Satisfied_fig.png' )
-pil_allimg = Image.open( 'assets/ROC_All_fig.png' )
+##from PIL import Image
+#app.get_asset_url( '
+pil_img = app.get_asset_url( 'Roc_curve_Loyalist_fig.png" )
+pil_hmimg = app.get_asset_url( 'High_Maintenance_fig.png' )
+pil_limg = app.get_asset_url( 'Potential_Loyalist_fig.png' )
+pil_dimg = app.get_asset_url( 'Dissatisfied_fig.png' )
+pil_simg = app.get_asset_url( 'Satisfied_fig.png' )
+pil_allimg = app.get_asset_url( 'ROC_All_fig.png' )
 
 pil_allimg = html.Div(
     [
