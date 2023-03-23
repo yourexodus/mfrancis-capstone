@@ -186,7 +186,8 @@ prentvideo_div = html.Div(
                                 }
                             ) ,
 
-                  html.H5( 'Video# 1 - 4min video short. ' ,
+                  html.H5(
+                      'Video# 1 - 4min video short. ' ,
                       style={
                           'backgroundColor': 'white' ,
                           'fontFamily': 'verdana' ,
@@ -198,7 +199,7 @@ prentvideo_div = html.Div(
                       className="prentvideoText"
                       ) ,
                     html.Iframe( src="assets/recordshortVersion.mp4" ,
-                                 style={"height": "1600", "width": "1600"} ),
+                                 style={"height": "700", "width": "100%"} ),
                      html.H5(
                       ' Video# 2 - 22min Extended version with demo' ,
                       style={
@@ -208,11 +209,11 @@ prentvideo_div = html.Div(
                           'gridArea': "H5prentvideo"
 
                           } ,
-                      id='prentvideoText2' ,
-                      className="prentvideoText2"
+                      id='prentvideoText' ,
+                      className="prentvideoText"
                       ) ,
                     html.Iframe( src="assets/Presentation1.mp4" ,
-                                 style={"height": "800", "width": "800"} ),
+                                 style={"height": "800", "width": "100%"} ),
 
 
                   ] ,
@@ -251,7 +252,8 @@ correlation_item = html.Div(
                 [
                     html.Div( [
                             html.H5(
-                            'The correlation heatmap illustrates there is a close relationship between variable in red and a more distant relationship between the variables in blue. After examaming the heatmap, I identified the following best-performaing variables: rec-acct, non-appt, appt_ci, call-prep, days_diff_purch_custartdt' ,
+                            'The correlation heatmap illustrates there is a close relationship between variable in red and a more distant relationship between the variables in blue.'
+                            'After examaming the heatmap, I identified the following best-performaing variables: rec-acct, non-appt, appt_ci, call-prep, days_diff_purch_custartdt' ,
                             style={
                                 'backgroundColor': 'white' ,
                                 'fontFamily': 'verdana' ,
@@ -260,7 +262,7 @@ correlation_item = html.Div(
 
                                 }
                             ) ,
-                        html.Img( src=correlation_img , width=840 , height=800 )
+                        html.Img( src=correlation_img , width=840 , height=800 ) ,
                         # using the pillow image variable
 
                         ] ) ,
@@ -1395,7 +1397,9 @@ title9 = html.Div(
                            className="title9"
                            ) ,
                            html.H5(
-                            'Here I evaluated my Logistic Regression model using the score method. I took the difference between Test and Train to measure overfitting and found the difference to very samll.  I also used KFolds to graph the mean absolute error against the folds.  Model indicated the test and train MAE range was very small.  '
+                            'Here I evaluated my Logistic Regression model using the score method. I took the difference'
+                            ' of my Test and Train accuracy and the difference was very small.  I also used KFolds to graph '
+                            'the mean absolute error against the folds.  Model indicated the test and train MAE range was very small.  '
                             'As a result, I can conclude the model is not overfit.  I was able to improve the score using a RandomForestClassifier.' ,
                             style={
                                 'backgroundColor': 'white' ,
@@ -1410,7 +1414,8 @@ title9 = html.Div(
 
 
                   html.H5(
-                      'Prediction accuracy using Logistic Regression Model ' ,
+                      'Prediction accuracy using Logistic '
+                      'Regression Model ' ,
                       style={
                           'backgroundColor': 'white' ,
                           'fontFamily': 'verdana' ,
@@ -1468,7 +1473,9 @@ title9 = html.Div(
                            className="PCA9"
                            ) ,
                     html.H5(
-                      'Was able to apply dimension reduction and impore my accuracy score using PCA. Plotted the PCA performance below and to show the performance peaks when N_neighbors is 2.  ALso used the pca components to list feature importance.  Applied PCA components to my RandaomForestClassifer' ,
+                      'Was able to apply dimension reduction and impore my accuracy score using PCA. '
+                      'Plotted the PCA performance below and to show the performance peaks when N_neighbors is 2.'
+                      ' ALso used the pca components to list feature importance.  Applied PCA components to my RandaomForestClassifer' ,
                       style={
                           'backgroundColor': 'white' ,
                           'fontFamily': 'verdana' ,
@@ -2059,3 +2066,4 @@ if __name__ == "__main__":
     app.run_server( debug=True )
 
 # https://youtu.be/X3OuhqS8ueM
+
