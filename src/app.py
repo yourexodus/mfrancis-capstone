@@ -26,6 +26,17 @@ title = html.Div(
                            id='dashTitle' ,
                            className="title"
                            ) ,
+                  html.H4( 'Recommended Browser: google chrome.  To decrease load time, please open using incognito' ,
+                           style={
+                               'backgroundColor': 'red' ,
+                               'fontFamily': 'verdana' ,
+                               'textAlign': 'center' ,
+                               'gridArea': "title6"
+
+                               } ,
+                           id='dashTitle6' ,
+                           className="title6"
+                           ) ,
 
                   html.H3( 'Problem: High Customer turnover/Low Customer Retention' ,
                            style={
