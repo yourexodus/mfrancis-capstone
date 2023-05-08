@@ -131,7 +131,7 @@ links = html.Div(
         children=[
             html.Br() , html.Br() , html.Br() ,
             html.A( 'Part_1_Proposal.md' ,
-                    href="https://git.generalassemb.ly/mfrancis/unit-4-capstone/blob/main/Part_1_Proposal.md" ,
+                    href="https://git.generalassemb.ly/mfrancis/marlainna-capstone-app/blob/main/Part_1_Proposal.md" ,
                     style={'gridArea': "link1"} ) , html.Br() ,
             html.A( 'Final_capstone_Part_I_Getting_the_Data.ipynb' ,
                     href="https://git.generalassemb.ly/mfrancis/marlainna-capstone-app/blob/main/Final_capstone_Part_I_Getting_the_Data.ipynb" ,
